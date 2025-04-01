@@ -34,7 +34,7 @@
         const sender = urlParams.get('sender') || null;
 
         // Load the navbar
-        fetch('../data/components/navbar.html')
+        fetch('https://mzsheets.com/data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -46,7 +46,7 @@
         );
 
         // Load the footer
-        fetch('../data/components/footer.html')
+        fetch('https://mzsheets.com/data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;

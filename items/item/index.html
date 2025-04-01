@@ -37,7 +37,7 @@
         );
 
         // Load the footer
-        fetch('../data/components/footer.html')
+        fetch('https://mzsheets.com/data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;
@@ -46,15 +46,15 @@
         );
 
         // Get item by ID
-        fetch('../data/products-data.json')
+        fetch('https://mzsheets.com/data/products-data.json')
             .then(response => response.json())
             .then(data => {
                 if (!id) {
-                    window.location.href = '../error/?error-code=400';
+                    window.location.href = 'https://mzsheets.com/error/?error-code=400';
                 }
                 item = data.find(item => item.id === id);
                 if (!item) {
-                    window.location.href = '../error/?error-code=404';
+                    window.location.href = 'https://mzsheets.com/error/?error-code=404';
                 }
 
                 // Update title to reflect item
