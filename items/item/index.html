@@ -15,8 +15,8 @@
         <h1 class="item-name"></h1>
         <p class="item-price"></p>
         <div class="item-controls">
-            <a href="../Error/Index.html?error-code=404&error-title=Item not found&error-msg=The item you are looking for does not exist." class="item-link">View item</a>
-            <a href="../Wishlist/" onclick="addToWishlist()" class="wishlist-button">Wishlist</a>
+            <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link">View item</a>
+            <a href="https://mzsheets.com/wishlist/" onclick="addToWishlist()" class="wishlist-button">Wishlist</a>
         </div>
     </div>
     <div id="main-footer"></div>
@@ -28,7 +28,7 @@
         let item = null;
 
         // Load the navbar
-        fetch('../data/components/navbar.html')
+        fetch('https://mzsheets.com/data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
