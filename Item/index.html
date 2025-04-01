@@ -19,6 +19,7 @@
             <a href="../Wishlist/" onclick="addToWishlist()" class="wishlist-button">Wishlist</a>
         </div>
     </div>
+    <div id="main-footer"></div>
     <script>
         // Get query parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -33,6 +34,15 @@
                 document.getElementById('main-navbar').innerHTML = data;
             })
             .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../Components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
         );
 
         // Get item by ID

@@ -67,9 +67,10 @@
         </div>
         <a href="#top" class="store-controls-back-to-top">Back to top</a>
     </div>
+    <div id="main-footer"></div>
     <script>
         // Display options
-        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 600)); // Default number of items per row
+        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 400)); // Default number of items per row
         const numRowsPerPage = 8; // Default number of rows per page
 
         // Get query parameters
@@ -157,6 +158,15 @@
                 });
             })
             .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../Components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
         );
 
         // Store items

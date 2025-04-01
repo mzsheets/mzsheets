@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+    <div id="main-footer"></div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const sender = urlParams.get('sender') || null;
@@ -42,6 +43,15 @@
                 document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
             })
             .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../Components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
         );
 
         // Load the wishlist
