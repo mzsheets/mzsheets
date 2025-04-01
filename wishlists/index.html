@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Components/globalstyle.css">
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
-    <title>HOME | MZSHEETS</title>
+    <title>Wishlist | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
@@ -20,7 +20,7 @@
             </div>
             <div style="display: none;" class="wishlist-empty-panel">
                 <h2>Your wishlist is empty</h2>
-                <p>Find some items you like and click the heart icon to add them to your wishlist</p>
+                <p>Click the star next to any item to add it to your wishlist</p>
             </div>
             <div class="wishlist-summary-container">
                 <h2 class="wishlist-total">Total: ???</h2>
@@ -28,12 +28,13 @@
             </div>
         </div>
     </div>
+    <div id="main-footer"></div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const sender = urlParams.get('sender') || null;
 
         // Load the navbar
-        fetch('../Components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -42,6 +43,15 @@
                 document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
             })
             .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
         );
 
         // Load the wishlist
@@ -76,7 +86,7 @@
 
             wishlist.forEach(item => {
                 const listItem = document.createElement('li');
-                fetch('../Components/wishlistcard.html')
+                fetch('../data/components/wishlistcard.html')
                     .then(response => response.text())
                     .then(data => {
                         listItem.innerHTML = data;
