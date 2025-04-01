@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Components/globalstyle.css">
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
-    <title>HOME | MZSHEETS</title>
+    <title>Items | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
@@ -14,63 +14,64 @@
         <div class="page-header">
             <h1 class="page-title">ITEMS</h1>
         </div>
+        <div class="store-content-header">
+            <div class="store-content-selection-container">
+                <p>Sort by: </p>
+                <select name="sort-by" class="store-sort-by-option">
+                    <option value="default" selected>Default</option>
+                    <option value="a-z">Name: A to Z</option>
+                    <option value="price-low-to-high">Price: Low to High</option>
+                    <option value="price-high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
+                <p>Currency: </p>
+                <select name="currency" class="store-currency-option">
+                    <option value="gbp" selected>GBP (£)</option>
+                    <option value="usd">USD ($)</option>
+                    <option value="eur">EUR (€)</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
+                <p>Items per row: </p>
+                <select name="items-per-row" class="store-items-per-row-option">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
+                <p>Rows per page: </p>
+                <select name="rows-per-page" class="store-rows-per-page-option">
+                    <option value="4">4</option>
+                    <option value="8" selected>8</option>
+                    <option value="16">16</option>
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="128">128</option>
+                </select>
+            </div>
+        </div>
+        <div id="store-content"></div>
+        <div class="store-controls">
+            <div class="store-controls-info">
+                <p class="store-control-page-info">Page <input type="number" name="page" class="store-control-page-number-input"></input> of&nbsp<p class="store-control-page-count">???</p></p>
+            </div>
+            <div class="store-controls-page-buttons">
+                <button class="store-controls-page-buttons-dec">&lt</button>
+                <button class="store-controls-page-buttons-inc">&gt</button>
+            </div>
+            <a href="#top" class="store-controls-back-to-top">Back to top</a>
+        </div>
     </div>
-    <div class="store-content-header">
-        <div class="store-content-selection-container">
-            <p>Sort by: </p>
-            <select name="sort-by" class="store-sort-by-option">
-                <option value="default" selected>Default</option>
-                <option value="a-z">Name: A to Z</option>
-                <option value="price-low-to-high">Price: Low to High</option>
-                <option value="price-high-to-low">Price: High to Low</option>
-            </select>
-        </div>
-        <div class="store-content-selection-container">
-            <p>Currency: </p>
-            <select name="currency" class="store-currency-option">
-                <option value="gbp" selected>GBP (£)</option>
-                <option value="usd">USD ($)</option>
-                <option value="eur">EUR (€)</option>
-            </select>
-        </div>
-        <div class="store-content-selection-container">
-            <p>Items per row: </p>
-            <select name="items-per-row" class="store-items-per-row-option">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3" selected>3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
-        <div class="store-content-selection-container">
-            <p>Rows per page: </p>
-            <select name="rows-per-page" class="store-rows-per-page-option">
-                <option value="4">4</option>
-                <option value="8" selected>8</option>
-                <option value="16">16</option>
-                <option value="32">32</option>
-                <option value="64">64</option>
-                <option value="128">128</option>
-            </select>
-        </div>
-    </div>
-    <div id="store-content"></div>
-    <div class="store-controls">
-        <div class="store-controls-info">
-            <p class="store-control-page-info">Page <input type="number" name="page" class="store-control-page-number-input"></input> of&nbsp<p class="store-control-page-count">???</p></p>
-        </div>
-        <div class="store-controls-page-buttons">
-            <button class="store-controls-page-buttons-dec">&lt</button>
-            <button class="store-controls-page-buttons-inc">&gt</button>
-        </div>
-        <a href="#top" class="store-controls-back-to-top">Back to top</a>
-    </div>
+    <div id="main-footer"></div>
     <script>
         // Display options
-        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 600)); // Default number of items per row
-        const numRowsPerPage = 8; // Default number of rows per page
+        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 400)); // Default number of items per row
+        const numRowsPerPage = 16; // Default number of rows per page
 
         // Get query parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -100,7 +101,7 @@
         setCookie('currency', currency, 365);
 
         // Load the navbar
-        fetch('../Components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -157,6 +158,15 @@
                 });
             })
             .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
         );
 
         // Store items
@@ -277,7 +287,7 @@
             storeContent.appendChild(container);
 
             // Fetch the itemcard component
-            fetch('../Components/itemcard.html')
+            fetch('../data/components/itemcard.html')
                 .then(response => response.text())
                 .then(template => {
                     items.forEach(item => {
@@ -287,7 +297,7 @@
 
                         // Populate the itemcard with data
                         itemCard.querySelector('.item-card-content-container').addEventListener('click', () => {
-                            window.location.href = `../Item/?id=${item.id}`;
+                            window.location.href = `../item/?id=${item.id}`;
                         });
                         itemCard.querySelector('.item-card-image').src = item.image;
                         itemCard.querySelector('.item-card-image').alt = item.name;
@@ -299,10 +309,10 @@
                             const icon = event.target.src;
                             if (icon.includes('star-yellow')) {
                                 removeFromWishlist(item);
-                                event.target.src = '../Data/Assets/star.png';
+                                event.target.src = '../data/assets/star.png';
                             } else {
                                 addToWishlist(item);
-                                event.target.src = '../Data/Assets/star-yellow.png';
+                                event.target.src = '../data/assets/star-yellow.png';
                             }
                             
                             // Prevent the event from propagating to the itemcard
