@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Components/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <title>HOME | MZSHEETS</title>
+</head>
+<body>
+    <div id="top"></div>
+    <div id="main-navbar"></div>
+    <div class="page-content">
+        <div class="page-header">
+            <h1 class="page-title">ITEMS</h1>
+        </div>
+    </div>
+    <div class="store-content-header">
+        <div class="store-content-selection-container">
+            <p>Sort by: </p>
+            <select name="sort-by" class="store-sort-by-option">
+                <option value="default" selected>Default</option>
+                <option value="a-z">Name: A to Z</option>
+                <option value="price-low-to-high">Price: Low to High</option>
+                <option value="price-high-to-low">Price: High to Low</option>
+            </select>
+        </div>
+        <div class="store-content-selection-container">
+            <p>Currency: </p>
+            <select name="currency" class="store-currency-option">
+                <option value="gbp" selected>GBP (£)</option>
+                <option value="usd">USD ($)</option>
+                <option value="eur">EUR (€)</option>
+            </select>
+        </div>
+        <div class="store-content-selection-container">
+            <p>Items per row: </p>
+            <select name="items-per-row" class="store-items-per-row-option">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="store-content-selection-container">
+            <p>Rows per page: </p>
+            <select name="rows-per-page" class="store-rows-per-page-option">
+                <option value="4">4</option>
+                <option value="8" selected>8</option>
+                <option value="16">16</option>
+                <option value="32">32</option>
+                <option value="64">64</option>
+                <option value="128">128</option>
+            </select>
+        </div>
+    </div>
+    <div id="store-content"></div>
+    <div class="store-controls">
+        <div class="store-controls-info">
+            <p class="store-control-page-info">Page <input type="number" name="page" class="store-control-page-number-input"></input> of&nbsp<p class="store-control-page-count">???</p></p>
+        </div>
+        <div class="store-controls-page-buttons">
+            <button class="store-controls-page-buttons-dec">&lt</button>
+            <button class="store-controls-page-buttons-inc">&gt</button>
+        </div>
+        <a href="#top" class="store-controls-back-to-top">Back to top</a>
+    </div>
+    <script>
+        // Display options
+        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 600)); // Default number of items per row
+        const numRowsPerPage = 8; // Default number of rows per page
+
+        // Get query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        let query = urlParams.get('query');
+        const category = urlParams.get('category');
+        const sortBy = urlParams.get('sort-by') ? urlParams.get('sort-by') : 'default';
+        // Currency may be stored in a cookie
+        const currency = urlParams.get('currency') || getCookie('currency') || 'gbp';
+        const itemsPerRow = urlParams.get('items-per-row') ? parseInt(urlParams.get('items-per-row')) : numItemsPerRow;
+        const rowsPerPage = urlParams.get('rows') ? parseInt(urlParams.get('rows')) : numRowsPerPage;
+        const currentPage = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
+
+        // Set title
+        if (category) {
+            document.querySelector('.page-title').textContent = category.toUpperCase();
+        } else {
+            document.querySelector('.page-title').textContent = 'ITEMS';
+        }
+
+        // Set filter options
+        document.querySelector('.store-sort-by-option').value = sortBy;
+        document.querySelector('.store-currency-option').value = currency;
+        document.querySelector('.store-items-per-row-option').value = itemsPerRow;
+        document.querySelector('.store-rows-per-page-option').value = rowsPerPage;
+
+        // Store currency as cookie
+        setCookie('currency', currency, 365);
+
+        // Load the navbar
+        fetch('../Components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-navbar').innerHTML = data;
+
+                // Set query if it exists
+                if (query) {
+                    document.getElementById('navbar-search-input').value = query;
+                    document.getElementById('navbar-m-search-input').value = query;
+                    if (query.length > 0) {
+                        // Set the input box in focus (desktop only)
+                        document.getElementById('navbar-search-input').focus();
+                    }
+                }
+                updateSearchQuery(query);
+
+                // Handle search input
+                document.getElementById('navbar-search-input').addEventListener('input', handleSearchInput);
+                document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
+
+                // Handle sort by option
+                document.querySelector('.store-sort-by-option').addEventListener('change', (event) => {
+                    const sortByOption = event.target.value; // Get the sort by option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('sort-by', sortByOption);
+                    window.location.href = url;
+                });
+
+                // Handle currency option
+                document.querySelector('.store-currency-option').addEventListener('change', (event) => {
+                    const currencyOption = event.target.value; // Get the currency option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('currency', currencyOption);
+                    window.location.href = url;
+                });
+
+                // Handle items per row option
+                document.querySelector('.store-items-per-row-option').addEventListener('change', (event) => {
+                    const itemsPerRowOption = event.target.value; // Get the items per row option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('items-per-row', itemsPerRowOption);
+                    window.location.href = url;
+                });
+
+                // Handle rows per page option
+                document.querySelector('.store-rows-per-page-option').addEventListener('change', (event) => {
+                    const rowsPerPageOption = event.target.value; // Get the rows per page option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('rows', rowsPerPageOption);
+                    window.location.href = url;
+                });
+            })
+            .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Store items
+        let allItems = [];
+
+        // Load default items
+        fetch('../Data/products-data.json')
+            .then(response => response.json())
+            .then(items => {
+                allItems = items;
+                displayItems(allItems);
+            })
+            .catch(error => console.error('Error loading store items:', error));
+
+        // Listen for page change events
+        document.querySelector('.store-controls-page-buttons').addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const direction = event.target.textContent; // Get the direction of the page change
+                const newPage = direction === '<' ? currentPage - 1 : currentPage + 1; // Calculate the new page
+
+                // Update the URL with the new page
+                const url = new URL(window.location);
+                url.searchParams.set('page', newPage);
+                window.location.href = url;
+            }
+        });
+        document.querySelector('.store-control-page-number-input').addEventListener('change', (event) => {
+            const newPage = parseInt(event.target.value); // Get the new page
+
+            // Update the URL with the new page
+            const url = new URL(window.location);
+            url.searchParams.set('page', newPage);
+            window.location.href = url;
+        });
+
+        // Handle search query
+        function handleSearchInput(event) {
+            const inQuery = event.target.value.toLowerCase(); // Get the search query
+            updateSearchQuery(inQuery);
+        }
+
+        // Update the current search query
+        function updateSearchQuery(nquery) {
+            // Update the URL with the new search query if it exists
+            const url = new URL(window.location);
+            query = nquery;
+            if (nquery !== null && nquery.length !== 0) {
+                url.searchParams.set('query', nquery);
+                window.history.pushState({}, '', url);
+                displayItems(allItems);
+                return;
+            }
+            if (url.searchParams.has('query')) {
+                url.searchParams.delete('query');
+                window.history.pushState({}, '', url);
+                displayItems(allItems);
+            }
+        }
+    
+        // Load the store content
+        function displayItems(items) {
+            items = filterByQuery(items, query);
+
+            const numItemsPerPage = itemsPerRow * rowsPerPage; // Number of items per page
+            const totalPages = Math.max(1, Math.ceil(items.length / numItemsPerPage)); // Calculate total pages
+
+            let page = currentPage;
+
+            // Ensure currentPage is within bounds
+            if (page < 1) {
+                page = 1;
+
+                // Update the URL to reflect the corrected page number
+                const url = new URL(window.location);
+                url.searchParams.set('page', page);
+                window.history.replaceState({}, '', url);
+            }
+            if (page > totalPages) {
+                page = totalPages;
+
+                // Update the URL to reflect the corrected page number
+                const url = new URL(window.location);
+                url.searchParams.set('page', page);
+                window.history.replaceState({}, '', url);
+            }
+
+            // Update page info
+            document.querySelector('.store-control-page-number-input').value = page;
+            document.querySelector('.store-control-page-count').textContent = totalPages;
+
+            // Disable/enable buttons based on page limits
+            const prevButton = document.querySelector('.store-controls-page-buttons-dec');
+            const nextButton = document.querySelector('.store-controls-page-buttons-inc');
+            prevButton.disabled = page === 1;
+            nextButton.disabled = page === totalPages;
+
+            // Sort items by the selected option
+            if (sortBy === 'a-z') {
+                items = items.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'price-low-to-high') {
+                items = items.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-high-to-low') {
+                items = items.sort((a, b) => b.price - a.price);
+            }
+
+            // Slice items by page
+            const startIndex = (page - 1) * numItemsPerPage;
+            const endIndex = startIndex + numItemsPerPage;
+            items = items.slice(startIndex, endIndex);
+
+            const storeContent = document.getElementById('store-content');
+            storeContent.innerHTML = ''; // Clear existing content
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'component-item-container';
+            container.style.gridTemplateColumns = `repeat(${itemsPerRow}, 1fr)`;
+            storeContent.appendChild(container);
+
+            // Fetch the itemcard component
+            fetch('../Components/itemcard.html')
+                .then(response => response.text())
+                .then(template => {
+                    items.forEach(item => {
+                        // Create a new element for each item
+                        const itemCard = document.createElement('div');
+                        itemCard.innerHTML = template;
+
+                        // Populate the itemcard with data
+                        itemCard.querySelector('.item-card-content-container').addEventListener('click', () => {
+                            window.location.href = `../Item/?id=${item.id}`;
+                        });
+                        itemCard.querySelector('.item-card-image').src = item.image;
+                        itemCard.querySelector('.item-card-image').alt = item.name;
+                        itemCard.querySelector('.item-card-title').textContent = item.name;
+                        itemCard.querySelector('.item-card-price').textContent = `${getPriceString(convertCurrency(item.price, item.currency, currency), currency)}`;
+                        itemCard.querySelector('.item-card-wishlist-icon').src = findInWishlist(item) ? '../Data/Assets/star-yellow.png' : '../Data/Assets/star.png';
+                        itemCard.querySelector('.item-card-wishlist-icon').addEventListener('click', (event) => {
+                            // Swap icon
+                            const icon = event.target.src;
+                            if (icon.includes('star-yellow')) {
+                                removeFromWishlist(item);
+                                event.target.src = '../Data/Assets/star.png';
+                            } else {
+                                addToWishlist(item);
+                                event.target.src = '../Data/Assets/star-yellow.png';
+                            }
+                            
+                            // Prevent the event from propagating to the itemcard
+                            event.stopPropagation();
+                        });
+
+                        // Append the populated itemcard to the container
+                        container.appendChild(itemCard);
+                    });
+                })
+                .catch(error => console.error('Error loading itemcard component:', error));
+        }
+
+        // Find item in wishlist
+        function findInWishlist(item) {
+            let wishlist = getCookie('wishlist');
+            wishlist = wishlist ? JSON.parse(wishlist) : [];
+            return wishlist.find(wishlistItem => wishlistItem.id === item.id);
+        }
+
+        // Remove item from wishlist
+        function removeFromWishlist(item) {
+            let wishlist = getCookie('wishlist');
+            wishlist = wishlist ? JSON.parse(wishlist) : [];
+            wishlist = wishlist.filter(wishlistItem => wishlistItem.id !== item.id);
+            setCookie('wishlist', JSON.stringify(wishlist), 365);
+        }
+
+        // Add an item to the wishlist
+        function addToWishlist(item) {
+            if (!item) {
+                alert('Item not found!');
+                return;
+            }
+
+            let wishlist = getCookie('wishlist');
+            wishlist = wishlist ? JSON.parse(wishlist) : [];
+
+            // Check if the item already exists in the wishlist by its ID
+            if (!wishlist.some(wishlistItem => wishlistItem.id === item.id)) {
+                wishlist.push(item);
+                setCookie('wishlist', JSON.stringify(wishlist), 365); // Store for 265 days
+            } else {
+                alert('Item is already in the wishlist!');
+            }
+        }
+
+        // Function to filter items by search query
+        function filterByQuery(items, query) {
+            // Filter items by category
+            if (category) {
+                items = items.filter(item => 
+                    item.category && item.category.toLowerCase() === category.toLowerCase()
+                );
+            }
+
+            // Further filter items by the search query
+            if (query) {
+                // Searching uses a tokenized approach
+                query = query.toLowerCase().trim(); // Convert query to lowercase and remove leading/trailing whitespace
+                query = query.split(' '); // Tokenize query by spaces
+                // Filter items by query
+                items = items.filter(item => {
+                    // Check if the item name contains all query tokens
+                    return query.every(token => item.name.toLowerCase().includes(token));
+                });
+            }
+            
+            return items;
+        }
+
+        // Function to convert currencies
+        function convertCurrency(amount, fromCurrency, toCurrency) {
+            // Conversion rates
+            const conversionRates = {
+                gbp: 0.77,
+                usd: 1,
+                eur: 0.93
+            };
+
+            // Convert the amount
+            return amount * conversionRates[toCurrency] / conversionRates[fromCurrency];
+        }
+
+        // Function to get prices in the selected currency as a string
+        function getPriceString(amount, currency) {
+            const currencySymbols = {
+                gbp: '£',
+                usd: '$',
+                eur: '€'
+            };
+
+            return `${currencySymbols[currency]}${String(amount.toFixed(2))}`;
+        }
+
+        // Function to set cookies
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        // Function to get cookies
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return null;
+        }
+    </script>
+</body>
+</html>
