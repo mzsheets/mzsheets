@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
-    <title>HOME | MZSHEETS</title>
+    <title>Item | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
@@ -56,6 +56,9 @@
                 if (!item) {
                     window.location.href = '../Error/Index.html?error-code=404&error-title=Item not found&error-msg=The item you are looking for does not exist.';
                 }
+
+                // Update title to reflect item
+                document.title = `${item.name} | MZsheets`;
                 
                 // Load the items information
                 document.querySelector('.item-thumbnail').src = item.image;
