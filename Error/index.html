@@ -18,9 +18,7 @@
     <script>
         // Get query parameters
         const urlParams = new URLSearchParams(window.location.search);
-        const errorCode = urlParams.get('error-code');
-        const errorTitle = urlParams.get('error-title');
-        const errorMessage = urlParams.get('error-msg');
+        const errorCode = urlParams.get('code');
 
         // Load the navbar
         fetch('../data/components/navbar.html')
@@ -39,6 +37,33 @@
             })
             .catch(error => console.error('Error loading footer:', error)
         );
+
+        const errors = {
+            400: {
+                title: 'Bad Request',
+                message: 'The request could not be understood by the server due to malformed syntax.'
+            },
+            401: {
+                title: 'Unauthorized',
+                message: 'The request requires user authentication.'
+            },
+            403: {
+                title: 'Forbidden',
+                message: 'The server understood the request, but is refusing to fulfill it.'
+            },
+            404: {
+                title: 'Not Found',
+                message: 'The server has not found anything matching the request URI.'
+            },
+            500: {
+                title: 'Internal Server Error',
+                message: 'The server encountered an unexpected condition which prevented it from fulfilling the request.'
+            }
+        };
+
+        // Get the error title and message if applicable
+        const errorTitle = errors[errorCode] ? errors[errorCode].title : 'Unknown Error';
+        const errorMessage = errors[errorCode] ? errors[errorCode].message : 'An unknown error occurred.';
 
         // Load the error message
         document.querySelector('.error-title').innerText = errorTitle;

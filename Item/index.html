@@ -50,11 +50,11 @@
             .then(response => response.json())
             .then(data => {
                 if (!id) {
-                    window.location.href = '../Error/Index.html?error-code=400&error-title=Bad Request&error-msg=The request could not be understood by the server due to malformed syntax.';
+                    window.location.href = '../error/?error-code=400';
                 }
                 item = data.find(item => item.id === id);
                 if (!item) {
-                    window.location.href = '../Error/Index.html?error-code=404&error-title=Item not found&error-msg=The item you are looking for does not exist.';
+                    window.location.href = '../error/?error-code=404';
                 }
 
                 // Update title to reflect item
