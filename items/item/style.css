@@ -6,17 +6,25 @@ body {
 }
 
 .page-content {
-    margin-top: 300px;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    text-align: center;
+    max-width: 100%;
+    margin: auto 20px;
 }
-
 .item-thumbnail {
     width: 100%;
     object-fit: contain;
-    height: 200px;
+    max-height: 200px;
 }
 .item-name {
     font-family: "Roboto Slab", sans-serif;
