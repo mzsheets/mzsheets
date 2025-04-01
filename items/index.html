@@ -303,7 +303,7 @@
                         itemCard.querySelector('.item-card-image').alt = item.name;
                         itemCard.querySelector('.item-card-title').textContent = item.name;
                         itemCard.querySelector('.item-card-price').textContent = `${getPriceString(convertCurrency(item.price, item.currency, currency), currency)}`;
-                        itemCard.querySelector('.item-card-wishlist-icon').src = findInWishlist(item) ? 'https://mzsheets.com/data/Assets/star-yellow.png' : 'https://mzsheets.com/data/Assets/star.png';
+                        itemCard.querySelector('.item-card-wishlist-icon').src = findInWishlist(item) ? 'https://mzsheets.com/data/assets/star-yellow.png' : 'https://mzsheets.com/data/assets/star.png';
                         itemCard.querySelector('.item-card-wishlist-icon').addEventListener('click', (event) => {
                             // Swap icon
                             const icon = event.target.src;
