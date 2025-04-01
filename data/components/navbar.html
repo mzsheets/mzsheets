@@ -1,0 +1,44 @@
+<nav class="component-page-navbar">
+    <div class="navbar-container">
+        <a class="navbar-title" href="../items/">MZSHEETS</a>
+        <input type="text" spellcheck="false" placeholder="Search..." id="navbar-search-input">
+        <ul>
+            <li><a
+                class="navbar-item"
+                onclick="const iDisplayMode=document.querySelector('.navbar-items-dropdown-container').style.display;document.querySelector('.navbar-items-dropdown-container').style.display=iDisplayMode==='block'?'none':'block';"
+                >Items&nbsp;<div class="navbar-icon-normal-container"><img class="navbar-icon-normal" src="../data/assets/down-arrow.png" alt=""></div></a>
+            </li>
+            <li class="navbar-search-icon">
+                <a
+                class="navbar-item"
+                onclick="const sDisplayMode=document.querySelector('.navbar-m-search-dropdown-container').style.display;document.querySelector('.navbar-m-search-dropdown-container').style.display=sDisplayMode==='block'?'none':'block';"
+                ><div class="navbar-icon-normal-container"><img class="navbar-icon-normal" src="../data/assets/magnifying-glass.png" alt="Search"></div></a>
+            </li>
+            <li><a
+                class="navbar-item"
+                href="../Wishlist/"
+                ><div class="navbar-icon-normal-container"><img class="navbar-icon-normal" src="../data/assets/star.png" alt="Wishlist"></div></a>
+            </li>
+        </ul>
+    </div>
+    <div
+    onmouseleave="document.querySelector('.navbar-items-dropdown-container').style.display = 'none';"
+    class="navbar-items-dropdown-container"
+    >
+        <ul class="navbar-items-dropdown">
+            <li><h3>Clothing</h3></li>
+            <li><a href="../items/">All Items</a></li>
+            <li><a href="../items/?category=shoes">Shoes</a></li>
+            <li><a href="../items/?category=hoodies-sweaters">Hoodies/Sweaters</a></li>
+            <li><a href="../items/?category=t-shirts">T-Shirts</a></li>
+            <li><a href="../items/?category=jackets">Jackets</a></li>
+            <li><a href="../items/?category=pants-shorts">Pants/Shorts</a></li>
+            <li><a href="../items/?category=headwear">Headwear</a></li>
+            <li><a href="../items/?category=accessories">Accessories</a></li>
+            <li><a href="../items/?category=other-stuff">Other stuff</a></li>
+        </ul>
+    </div>
+    <div class="navbar-m-search-dropdown-container">
+        <input type="text" spellcheck="false" placeholder="Search..." id="navbar-m-search-input" class="navbar-m-search-input">
+    </div>
+</nav>
