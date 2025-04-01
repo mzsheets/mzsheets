@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Components/globalstyle.css">
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
     <title>Error | MZsheets</title>
 </head>
@@ -23,7 +23,7 @@
         const errorMessage = urlParams.get('error-msg');
 
         // Load the navbar
-        fetch('../Components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -32,7 +32,7 @@
         );
 
         // Load the footer
-        fetch('../Components/footer.html')
+        fetch('../data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;

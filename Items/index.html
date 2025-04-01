@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Components/globalstyle.css">
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
     <title>Items | MZsheets</title>
 </head>
@@ -101,7 +101,7 @@
         setCookie('currency', currency, 365);
 
         // Load the navbar
-        fetch('../Components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -161,7 +161,7 @@
         );
 
         // Load the footer
-        fetch('../Components/footer.html')
+        fetch('../data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;
@@ -287,7 +287,7 @@
             storeContent.appendChild(container);
 
             // Fetch the itemcard component
-            fetch('../Components/itemcard.html')
+            fetch('../data/components/itemcard.html')
                 .then(response => response.text())
                 .then(template => {
                     items.forEach(item => {
@@ -297,7 +297,7 @@
 
                         // Populate the itemcard with data
                         itemCard.querySelector('.item-card-content-container').addEventListener('click', () => {
-                            window.location.href = `../Item/?id=${item.id}`;
+                            window.location.href = `../item/?id=${item.id}`;
                         });
                         itemCard.querySelector('.item-card-image').src = item.image;
                         itemCard.querySelector('.item-card-image').alt = item.name;
@@ -309,10 +309,10 @@
                             const icon = event.target.src;
                             if (icon.includes('star-yellow')) {
                                 removeFromWishlist(item);
-                                event.target.src = '../Data/Assets/star.png';
+                                event.target.src = '../data/assets/star.png';
                             } else {
                                 addToWishlist(item);
-                                event.target.src = '../Data/Assets/star-yellow.png';
+                                event.target.src = '../data/assets/star-yellow.png';
                             }
                             
                             // Prevent the event from propagating to the itemcard
