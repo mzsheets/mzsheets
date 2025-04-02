@@ -48,6 +48,13 @@ body {
     color: #333;
     margin: 0 auto;
 }
+@media (max-width: 1000px) {
+    #product-search {
+        width: calc(100vw - 100px);
+        padding: 10px;
+        font-size: 1em;
+    }
+}
 .search-dropdown-list {
     display: flex;
     flex-direction: column;
@@ -99,6 +106,13 @@ body {
     border-radius: 10px;
     border: 2px solid #ff1212;
     transition: background-color 200ms ease;
+}
+@media (max-width: 1000px) {
+    .dead-link-container a {
+        font-size: 1em;
+        padding: 5px 30px;
+        margin: 10px auto;
+    }
 }
 .dead-link-container a:hover {
     background-color: #ff5c5c;
