@@ -89,6 +89,13 @@ body {
     border-left: 1px solid #ccc;
     width: calc(100% + 36px);
 }
+@media (max-width: 1000px) {
+    .search-dropdown-list li {
+        font-size: 1em;
+        width: calc(100% + 20px);
+        padding: 8px 0;
+    }
+}
 .search-dropdown-list li:last-child {
     border-radius: 0 0 10px 10px;
     border-bottom: 1px solid #ccc;
