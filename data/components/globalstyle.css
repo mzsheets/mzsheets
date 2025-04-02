@@ -202,8 +202,11 @@
     font-family: 'Roboto Slab', sans-serif;
     font-size: 0.4em;
     color: #333;
-    margin-top: 5px;
+    margin: 2px 0;
     text-align: center;
+}
+.footer-disclaimer:first-child {
+    margin-top: 5px;
 }
 .footer-copyright {
     font-family: 'Roboto Slab', sans-serif;
