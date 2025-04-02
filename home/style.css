@@ -14,7 +14,7 @@ body {
     min-height: 70vh;
 }
 
-.faq-container {
+.home-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -22,14 +22,14 @@ body {
     text-align: center;
     margin: auto 20px;
 }
-.faq-container h1 {
+.home-container h1 {
     font-family: "Roboto Slab", sans-serif;
     font-size: 2em;
     color: #333;
     margin: 0;
     padding: 0;
 }
-.faq-container h2 {
+.home-container h2 {
     font-family: "Roboto Slab", sans-serif;
     font-size: 1.5em;
     color: #333;
@@ -37,19 +37,19 @@ body {
     margin-top: 30px;
     padding: 0;
 }
-.faq-container p {
+.home-container p {
     font-family: "Roboto Slab", sans-serif;
     font-size: 1.2em;
     color: #333;
     margin: 0;
     padding: 0;
 }
-.faq-container a {
+.home-container a {
     font-family: "Roboto Slab", sans-serif;
     font-size: 1em;
     color: #008cff;
     text-decoration: none;
 }
-.about-container a:hover {
+.home-container a:hover {
     text-decoration: underline;
 }

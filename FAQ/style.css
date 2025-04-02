@@ -50,7 +50,7 @@ body {
     color: #008cff;
     text-decoration: none;
 }
-.about-container a:hover {
+.faq-container a:hover {
     text-decoration: underline;
 }
 .p-space-above {
