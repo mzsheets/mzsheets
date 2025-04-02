@@ -198,6 +198,13 @@
     color: #777;
     transition-duration: 200ms;
 }
+.footer-disclaimer {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 0.4em;
+    color: #333;
+    margin-top: 5px;
+    text-align: center;
+}
 .footer-copyright {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 0.8em;
