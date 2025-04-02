@@ -18298,5 +18298,14 @@
         "link": "https://cnfans.com/product/?shop_type=taobao&id=819527253232&ref=3260913",
         "currency": "usd",
         "category": "accessories"
+    },
+    {
+        "id": 1831,
+        "name": "Polo Ralph Lauren Zip Up Hoodie #2 (10 Colorways)",
+        "link": "https://cnfans.com/product/?platform=undefined&id=7330817401&ref=3260913",
+        "image": "data/assets/product-images/1831.webp",
+        "price": 24.11,
+        "currency": "usd",
+        "category": "hoodies-sweaters"
     }
 ]
