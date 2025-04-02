@@ -111,8 +111,8 @@
             const product = allProducts.find(product => product.name.toLowerCase() === filter);
 
             if (product) {
-                // Send report to deadlink mail (deadlink@mzsheets.com)
-                const data = 'mailto:deadlink@mzsheets.com?subject=Dead Link Report&body=Name: ' + product.name + '%0D%0AProduct ID: ' + product.id + '%0D%0AProduct URL: https://mzsheets.com/items/item?id=' + product.id + '%0D%0ASubmitted: ' + new Date().toLocaleTimeString() + ' ' + new Date().toLocaleDateString();
+                // Send report to deadlink mail (deadlinks@mzsheets.com)
+                const data = 'mailto:deadlinks@mzsheets.com?subject=Dead Link Report&body=Name: ' + product.name + '%0D%0AProduct ID: ' + product.id + '%0D%0AProduct URL: https://mzsheets.com/items/item?id=' + product.id + '%0D%0ASubmitted: ' + new Date().toLocaleTimeString() + ' ' + new Date().toLocaleDateString();
                 window.location.href = data;
                 window.location.href = 'https://mzsheets.com/contact/dead-link/thanks'
             } else {
