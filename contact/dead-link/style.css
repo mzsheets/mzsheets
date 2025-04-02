@@ -71,6 +71,11 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+@media (max-width: 1000px) {
+    .search-dropdown-list {
+        width: calc(100vw - 100px);
+    }
+}
 .search-dropdown-list li {
     font-family: "Roboto Slab", sans-serif;
     font-optical-sizing: auto;
