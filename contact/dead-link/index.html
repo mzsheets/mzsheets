@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../data/components/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Report Dead Link | MZsheets</title>
+</head>
+<body>
+    <div id="top"></div>
+    <div id="main-navbar"></div>
+    <div class="page-content">
+        <div class="dead-link-container">
+            <h1>Report Dead Link</h1>
+            <div class="search-container">
+                <input type="text" id="product-search" placeholder="Search for a product..." oninput="filterProducts()">
+                <ul id="search-dropdown" class="search-dropdown-list"></ul>
+            </div>
+            <a onclick="sendReport()">Report</a>
+        </div>
+    </div>
+    <div id="main-footer"></div>
+    <script>
+        // Load the navbar
+        fetch('https://mzsheets.com/data/components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-navbar').innerHTML = data;
+
+                document.getElementById('navbar-search-input').addEventListener('input', handleSearchInput);
+                document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
+            })
+            .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('https://mzsheets.com/data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
+        );
+
+        // Load products
+        let allProducts = [];
+        fetch('https://mzsheets.com/data/products-data.json')
+            .then(response => response.json())
+            .then(data => {
+                allProducts = data;
+            })
+            .catch(error => console.error('Error loading products:', error)
+        );
+
+        // Function to filter products
+        function filterProducts() {
+            const searchInput = document.getElementById('product-search').value.toLowerCase();
+            const filter = searchInput.toLowerCase();
+            const dropdown = document.getElementById('search-dropdown');
+            
+            dropdown.innerHTML = ''; // Clear previous results
+
+            if (filter) {
+                // Token based search
+                const searchTokens = filter.split(' ');
+                const filteredProducts = allProducts.filter(product => {
+                    return searchTokens.every(token => product.name.toLowerCase().includes(token));
+                });
+
+                const maxResults = 5; // Limit the number of results displayed
+                // Display filtered products
+                filteredProducts.slice(0, maxResults).forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = product.name;
+                    li.dataset.id = product.id; // Store the product ID in a data attribute
+                    li.onclick = function() {
+                        document.getElementById('product-search').value = product.name; // Set the input value to the selected product name
+                        dropdown.innerHTML = ''; // Clear the dropdown after selection
+
+                        document.getElementById('product-search').style.borderBottomLeftRadius = '10px';
+                        document.getElementById('product-search').style.borderBottomRightRadius = '10px';
+                        document.getElementById('product-search').style.borderBottom = '1px solid #ccc'; // Reset border after selection
+                    };
+                    dropdown.appendChild(li);
+                });
+
+                // If there are more than one result, remove the bottom corners of the search bar
+                if (filteredProducts.length > 1) {
+                    document.getElementById('product-search').style.borderBottomLeftRadius = '0';
+                    document.getElementById('product-search').style.borderBottomRightRadius = '0';
+                    document.getElementById('product-search').style.borderBottom = 'none';
+                } else {
+                    document.getElementById('product-search').style.borderBottomLeftRadius = '10px';
+                    document.getElementById('product-search').style.borderBottomRightRadius = '10px';
+                    document.getElementById('product-search').style.borderBottom = '1px solid #ccc'; // Reset border if only one result
+                }
+            }
+            else {
+                dropdown.innerHTML = ''; // Clear the dropdown if input is empty
+                document.getElementById('product-search').style.borderBottomLeftRadius = '10px';
+                document.getElementById('product-search').style.borderBottomRightRadius = '10px';
+                document.getElementById('product-search').style.borderBottom = '1px solid #ccc'; // Reset border if only one result
+            }
+        }
+
+        // Function to send report
+        function sendReport() {
+            const searchInput = document.getElementById('product-search').value;
+            const filter = searchInput.toLowerCase();
+            const product = allProducts.find(product => product.name.toLowerCase() === filter);
+
+            if (product) {
+                // Send report to deadlink mail (deadlink@mzsheets.com)
+                const data = 'mailto:deadlink@mzsheets.com?subject=Dead Link Report&body=Name: ' + product.name + '%0D%0AProduct ID: ' + product.id + '%0D%0AProduct URL: https://mzsheets.com/items/item?id=' + product.id + '%0D%0ASubmitted: ' + new Date().toLocaleTimeString() + ' ' + new Date().toLocaleDateString();
+                window.location.href = data;
+                window.location.href = 'https://mzsheets.com/contact/dead-link/thanks'
+            } else {
+                alert('Please select a valid product from the dropdown.');
+            }
+        }
+    </script>
+</body>
+</html>

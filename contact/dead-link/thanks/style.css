@@ -1,0 +1,41 @@
+body {
+    background-color: #eee;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    min-height: 70vh;
+}
+
+.thanks-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin: auto 20px;
+    width: 100%;
+}
+.thanks-container h1 {
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 2em;
+    color: #333;
+    margin: 20px 0;
+    padding: 0;
+}
+.thanks-container a {
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 1.2em;
+    color: #008cff;
+    text-decoration: none;
+}
+.thanks-container a:hover {
+    text-decoration: underline;
+}

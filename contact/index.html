@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Us | MZsheets</title>
+</head>
+<body>
+    <div id="top"></div>
+    <div id="main-navbar"></div>
+    <div class="page-content">
+        <div class="contact-container">
+            <h1>Contact Us</h1>
+            <p>Before contacting, make sure you check the <a href="https://mzsheets.com/FAQ">FAQ</a>.</p>
+            <p>If you have any questions or concerns, feel free to reach out to us at:</p>
+            <a href="mailto:contact@mzsheets.com" class="contact-email">contact@mzsheets.com</a>
+            <p>We’ll get back to you as soon as possible!</p>
+        </div>
+    </div>
+    <div id="main-footer"></div>
+    <script>
+        // Load the navbar
+        fetch('https://mzsheets.com/data/components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-navbar').innerHTML = data;
+
+                document.getElementById('navbar-search-input').addEventListener('input', handleSearchInput);
+                document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
+            })
+            .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('https://mzsheets.com/data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
+        );
+    </script>
+</body>
+</html>

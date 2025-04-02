@@ -1,0 +1,55 @@
+body {
+    background-color: #eee;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    min-height: 70vh;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin: auto 20px;
+}
+.faq-container h1 {
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 2em;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+.faq-container h2 {
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 1.5em;
+    color: #333;
+    margin: 0;
+    margin-top: 30px;
+    padding: 0;
+}
+.faq-container p {
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 1.2em;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+.faq-container a {
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 1em;
+    color: #008cff;
+    text-decoration: none;
+}
+.about-container a:hover {
+    text-decoration: underline;
+}

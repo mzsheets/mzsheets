@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <title>About Us | MZsheets</title>
+</head>
+<body>
+    <div id="top"></div>
+    <div id="main-navbar"></div>
+    <div class="page-content">
+        <div class="about-container">
+            <h1>About Us</h1>
+            <p>MZsheets is a website designed to store and display cnfans products.</p>
+            <p>cnfans.com is a popular online shipping agent designed to allow users to purchase products from various chinese marketplaces.</p>
+            <p>Because of this, cnfans does not sell products directly, you must find the product link to purchase through them.</p>
+            <p>This is what MZsheets is for, MZsheets provides an easy way to access thousands of these product links in an easy to navigate interface.</p>
+        </div>
+    </div>
+    <div id="main-footer"></div>
+    <script>
+        // Load the navbar
+        fetch('https://mzsheets.com/data/components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-navbar').innerHTML = data;
+
+                document.getElementById('navbar-search-input').addEventListener('input', handleSearchInput);
+                document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
+            })
+            .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('https://mzsheets.com/data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
+        );
+    </script>
+</body>
+</html>
