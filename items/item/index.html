@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MZsheets - Your go-to source for cnfans links. Find everything you need in one place.">
+    <meta name="keywords" content="cnfans, mzsheets, links, cnfans links, cnfans items, cnfans database, reps, clothes, fashion, designer, shoes, trainers, kicks, pandabuy, kakobuy, taobao, aliexpress, shein, dhgate, alibaba, cnfans shoes, cnfans clothes, cnfans fashion, cnfans designer, cnfans trainers, cnfans kicks">
+    <meta name="author" content="Max Tasker">
     <link rel="stylesheet" href="../../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
     <title>Item | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
-    <div id="main-navbar"></div>
+    <header>
+        <div id="main-navbar"></div>
+    </header>
     <div class="page-content">
         <div class="item-container">
             <img alt="Item image" class="item-thumbnail">
@@ -21,7 +26,9 @@
             </div>
         </div>
     </div>
-    <div id="main-footer"></div>
+    <footer>
+        <div id="main-footer"></div>
+    </footer>
     <script>
         // Get query parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,6 +68,9 @@
 
                 // Update title to reflect item
                 document.title = `${item.name} | MZsheets`;
+
+                // Update meta tags
+                updateMetaTags(item);
                 
                 // Load the items information
                 document.querySelector('.item-thumbnail').src = item.image;
@@ -73,6 +83,41 @@
             })
             .catch(error => console.error('Error loading item:', error)
         );
+
+        // Function to update meta tags dynamically
+        function updateMetaTags(item) {
+            const head = document.head;
+
+            // Helper function to create or update a meta tag
+            function setMetaTag(property, content, isProperty = true) {
+                let metaTag = document.querySelector(
+                    isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`
+                );
+                if (!metaTag) {
+                    metaTag = document.createElement('meta');
+                    if (isProperty) {
+                        metaTag.setAttribute('property', property);
+                    } else {
+                        metaTag.setAttribute('name', property);
+                    }
+                    head.appendChild(metaTag);
+                }
+                metaTag.setAttribute('content', content);
+            }
+
+            // Open Graph Meta Tags
+            setMetaTag('og:title', `${item.name} | MZsheets`);
+            setMetaTag('og:description', `Check out ${item.name} on MZsheets. Price: ${item.price} ${item.currency.toUpperCase()}.`);
+            setMetaTag('og:url', `https://mzsheets.com/items/item/?id=${item.id}`);
+            setMetaTag('og:image', item.image);
+            setMetaTag('og:type', 'product');
+
+            // Twitter Meta Tags
+            setMetaTag('twitter:card', 'summary_large_image', false);
+            setMetaTag('twitter:title', `${item.name} | MZsheets`, false);
+            setMetaTag('twitter:description', `Check out ${item.name} on MZsheets.`, false);
+            setMetaTag('twitter:image', item.image, false);
+        }
 
         // Function to convert currencies
         function convertCurrency(amount, fromCurrency, toCurrency) {

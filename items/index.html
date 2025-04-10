@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MZsheets - Your go-to source for cnfans links. Find everything you need in one place.">
+    <meta name="keywords" content="cnfans, mzsheets, links, cnfans links, cnfans items, cnfans database, reps, clothes, fashion, designer, shoes, trainers, kicks, pandabuy, kakobuy, taobao, aliexpress, shein, dhgate, alibaba, cnfans shoes, cnfans clothes, cnfans fashion, cnfans designer, cnfans trainers, cnfans kicks">
+    <meta name="author" content="Max Tasker">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MZsheets - Your go-to source for cnfans links">
+    <meta property="og:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
+    <meta property="og:url" content="https://mzsheets.com/items">
+    <meta property="og:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MZsheets - Your go-to source for cnfans links">
+    <meta name="twitter:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
+    <meta name="twitter:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
+
     <link rel="stylesheet" href="../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
     <title>Items | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
-    <div id="main-navbar"></div>
-    <div class="page-content">
-        <div class="page-header">
+    <header>
+        <div id="main-navbar"></div>
+    </header>
+    <main class="page-content">
+        <section class="page-header">
             <h1 class="page-title">ITEMS</h1>
-        </div>
-        <div class="store-content-header">
+        </section>
+        <section class="store-content-header">
             <div class="store-content-selection-container">
                 <p>Sort by: </p>
                 <select name="sort-by" class="store-sort-by-option">
@@ -54,9 +73,9 @@
                     <option value="128">128</option>
                 </select>
             </div>
-        </div>
-        <div id="store-content"></div>
-        <div class="store-controls">
+        </section>
+        <section id="store-content"></section>
+        <section class="store-controls">
             <div class="store-controls-info">
                 <p class="store-control-page-info">Page <input type="number" name="page" class="store-control-page-number-input"></input> of&nbsp<p class="store-control-page-count">???</p></p>
             </div>
@@ -65,9 +84,11 @@
                 <button class="store-controls-page-buttons-inc">&gt</button>
             </div>
             <a href="#top" class="store-controls-back-to-top">Back to top</a>
-        </div>
-    </div>
-    <div id="main-footer"></div>
+        </section>
+    </main>
+    <footer>
+        <div id="main-footer"></div>
+    </footer>
     <script>
         // Display options
         const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 400)); // Default number of items per row

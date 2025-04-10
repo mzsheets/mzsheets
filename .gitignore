@@ -5,6 +5,7 @@
 
 # Website utilities
 *.py
+tools/
 
 # User-specific files
 *.rsuser
