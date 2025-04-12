@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /data/components/
+Disallow /index.html
 
 Sitemap: https://mzsheets.com/sitemap.xml
