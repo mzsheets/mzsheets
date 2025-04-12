@@ -190,20 +190,66 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-    .info-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-list {
-        grid-template-columns: 1fr;
+    .hero {
+        padding: 30px 10px;
     }
 
     .hero h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
     .hero p {
         font-size: 1em;
+    }
+
+    .features {
+        padding: 30px 10px;
+    }
+
+    .features h2 {
+        font-size: 1.5em;
+    }
+
+    .feature-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .feature {
+        max-width: 100%;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .feature img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .feature h3 {
+        font-size: 1em;
+    }
+
+    .feature p {
+        font-size: 0.9em;
+    }
+
+    .cta-section {
+        padding: 30px 10px;
+    }
+
+    .cta-section h2 {
+        font-size: 1.5em;
+    }
+
+    .cta-section p {
+        font-size: 1em;
+    }
+
+    .cta-button {
+        font-size: 1em;
+        padding: 15px 20px;
     }
 }
