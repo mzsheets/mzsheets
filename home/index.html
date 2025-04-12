@@ -32,19 +32,61 @@
         <div id="main-navbar"></div>
     </header>
     <main class="page-content">
-        <section class="home-container">
-            <h1>Welcome to MZsheets!</h1>
-            <p>Sick and tired of spending days scrambling through poorly made google docs and crammed websites? I was, that's why I made MZsheets.</p>
-            <p>MZsheets contains thousands of cnfans items laid in an easy to find manner.</p>
-            <a href="https://mzsheets.com/items">Begin searching</a>
-        </section>
+        <div class="home-container">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Welcome to MZsheets</h1>
+                    <p>The ultimate cnfans sheet. Thousands of cnfans product links at your fingertips.</p>
+                    <a href="https://mzsheets.com/items" class="cta-button">Browse Items</a>
+                </div>
+            </section>
+            <section class="info-cards">
+                <div class="card">
+                    <h2>Why I Created MZsheets</h2>
+                    <p>MZsheets was born out of frustration with cluttered and poorly organized cnfans sheets. This platform is designed to simplify your shopping experience.</p>
+                </div>
+                <div class="card">
+                    <h2>How Cnfans Sheets Work</h2>
+                    <p>Cnfans sheets are collections of product links that direct you to items on cnfans.com. MZsheets organizes these links for easy browsing.</p>
+                </div>
+                <div class="card">
+                    <h2>How to Use MZsheets</h2>
+                    <p>Register on cnfans.com, browse items on MZsheets, and add them to your basket on cnfans.com to complete your purchase.</p>
+                </div>
+            </section>
+            <section class="features">
+                <h2>Why Choose MZsheets?</h2>
+                <div class="feature-list">
+                    <div class="feature">
+                        <img src="path-to-icon1.png" alt="Easy to Use">
+                        <h3>Easy to Use</h3>
+                        <p>Streamlined navigation and intuitive design.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="path-to-icon2.png" alt="Organized Links">
+                        <h3>Organized Links</h3>
+                        <p>Find product links quickly and easily.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="path-to-icon3.png" alt="Time-Saving">
+                        <h3>Time-Saving</h3>
+                        <p>Spend less time searching and more time shopping.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="cta-section">
+                <h2>Ready to Start Shopping?</h2>
+                <p>Discover thousands of products and make your shopping experience easier with MZsheets.</p>
+                <a href="https://cnfans.com/register?ref=3260913" class="cta-button">Register on Cnfans</a>
+            </section>
+        </div>
     </main>
     <footer>
         <div id="main-footer"></div>
     </footer>
     <script>
         // Load the navbar
-        fetch('https://mzsheets.com/data/components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -56,7 +98,7 @@
         );
 
         // Load the footer
-        fetch('https://mzsheets.com/data/components/footer.html')
+        fetch('../data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;

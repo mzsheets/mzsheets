@@ -1,8 +1,17 @@
 body {
-    background-color: #eee;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto Slab', sans-serif;
+    color: #333;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
+}
+a {
+    color: #333;
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+a:hover {
+    color: #555;
 }
 
 .page-content {
@@ -10,8 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    min-height: 70vh;
+    width: 100%;
 }
 
 .home-container {
@@ -20,36 +28,182 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-    margin: auto 20px;
+    width: 100%;
 }
-.home-container h1 {
-    font-family: "Roboto Slab", sans-serif;
-    font-size: 2em;
+
+.hero {
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    text-align: center;
+    padding: 50px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.hero h1 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 2.5em;
     color: #333;
-    margin: 0;
-    padding: 0;
+    margin-bottom: 20px;
 }
-.home-container h2 {
-    font-family: "Roboto Slab", sans-serif;
+.hero p {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+}
+.hero .cta-button {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1em;
+    color: #fff;
+    background-color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 200ms ease;
+}
+.hero .cta-button:hover {
+    background-color: #555;
+}
+
+.info-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+.info-cards .card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    cursor: pointer;
+}
+.info-cards .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.info-cards .card h2 {
+    font-family: 'Roboto Slab', sans-serif;
     font-size: 1.5em;
     color: #333;
-    margin: 0;
-    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.info-cards .card p {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.features {
+    background-color: #f0f0f0;
+    padding: 50px 20px;
+    text-align: center;
+}
+.features h2 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+}
+.feature-list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 0 auto;
     padding: 0;
 }
-.home-container p {
-    font-family: "Roboto Slab", sans-serif;
+.feature {
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    cursor: pointer;
+    max-width: 300px;
+    width: 100%;
+    max-height: 150px;
+    height: 100%;
+}
+@media (max-width: 768px) {
+    .feature {
+        max-width: calc(100% - 80px);
+    }
+}
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.feature img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+.feature h3 {
+    font-family: 'Roboto Slab', sans-serif;
     font-size: 1.2em;
     color: #333;
-    margin: 0;
-    padding: 0;
+    margin-bottom: 10px;
 }
-.home-container a {
-    font-family: "Roboto Slab", sans-serif;
+.feature p {
+    font-family: 'Roboto Slab', sans-serif;
     font-size: 1em;
-    color: #008cff;
-    text-decoration: none;
+    color: #555;
+    line-height: 1.5;
 }
-.home-container a:hover {
-    text-decoration: underline;
+
+.cta-section {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+}
+.cta-section h2 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+.cta-section p {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+.cta-section .cta-button {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1em;
+    color: #333;
+    background-color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 200ms ease, color 200ms ease;
+}
+.cta-section .cta-button:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .info-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
 }

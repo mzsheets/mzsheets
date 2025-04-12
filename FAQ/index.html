@@ -30,23 +30,40 @@
         <div id="main-navbar"></div>
     </header>
     <main class="page-content">
-        <section class="faq-container">
-            <h1>FAQ</h1>
-            <h2>Q: How do I purchase products found on MZsheets?</h2>
-            <p>A: MZsheets does not sell products directly, to do so you must click the product link, this will take you to the cnfans website where you can purchase your items.</p>
-            <h2>Q: What do I do if i have problems with my order?</h2>
-            <p>A: We do not handle orders, we just show the products, all orders are done by cnfans.</p>
-            <h2>Q: What do I do if a product link isn't working?</h2>
-            <p>A: Unfortunately, products get taken down often, there is no way to get around this, however, you can report dead links <a href="https://mzsheets.com/contact/dead-link">here</a>.</p>
-            <p class="p-space-above">If you have any other questions, feel free to ask <a href="https://mzsheets.com/contact">here</a>.</p>
-        </section>
+        <div class="faq-container">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Frequently Asked Questions</h1>
+                    <p>Commonly asked questions about MZsheets. If you can't find an answer to your query, feel free to contact us using the link below.</p>
+                    <a href="../contact" class="cta-button">Contact Us</a>
+                </div>
+            </section>
+            <section class="faq-cards">
+                <div class="card">
+                    <h2>Is MZsheets a shop?</h2>
+                    <p>No. MZsheets is not a shop, It's a catalog of product links. Think of it like a newspaper, the newspaper does not sell the products it shows, it just directs users to their real listings.</p>
+                </div>
+                <div class="card">
+                    <h2>What is a "cnfans sheet"?</h2>
+                    <p>Cnfans sheets are collections of product links that direct you to items on cnfans. Usually these are poorly made google docs, but MZsheets organizes these links for easy browsing.</p>
+                </div>
+                <div class="card">
+                    <h2>How do I use MZsheets?</h2>
+                    <p>Register on cnfans.com, browse items on MZsheets, and add them to your basket on cnfans.com to complete your purchase.</p>
+                </div>
+                <div class="card">
+                    <h2>What is cnfans?</h2>
+                    <p>Cnfans is a popular chinese shipping agent, allowing anybody across the globe to buy products in china, and have them shipped directly to your door.</p>
+                </div>
+            </section>
+        </div>
     </main>
     <footer>
         <div id="main-footer"></div>
     </footer>
     <script>
         // Load the navbar
-        fetch('https://mzsheets.com/data/components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -58,7 +75,7 @@
         );
 
         // Load the footer
-        fetch('https://mzsheets.com/data/components/footer.html')
+        fetch('../data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;
