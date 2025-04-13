@@ -18334,5 +18334,14 @@
         "price": 15.08,
         "currency": "gbp",
         "category": "pants-shorts"
+    },
+    {
+        "id": 1835,
+        "name": "Prada Cups (11 Colorways)",
+        "link": "https://cnfans.com/product/?platform=WEIDIAN&id=7437050286&ref=3260913",
+        "image": "https://mzsheets.com/data/assets/product-images/1835.webp",
+        "price": 54.07,
+        "currency": "usd",
+        "category": "shoes"
     }
 ]

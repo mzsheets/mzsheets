@@ -17,17 +17,19 @@
     <header>
         <div id="main-navbar"></div>
     </header>
-    <div class="page-content">
+    <main class="page-content">
         <div class="item-container">
             <img alt="Item image" class="item-thumbnail">
-            <h1 class="item-name"></h1>
-            <p class="item-price"></p>
-            <div class="item-controls">
-                <a href="https://mzsheets.com/error/Index.html?error-code=404" target="_blank" class="item-link">View item</a>
-                <a href="https://mzsheets.com/wishlist/" onclick="addToWishlist()" class="wishlist-button">Wishlist</a>
+            <div class="item-info">
+                <h1 class="item-name"></h1>
+                <p class="item-price"></p>
+                <div class="item-controls">
+                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link"><img src="../../data/assets/cnfans.png" alt="Cnfans" class="item-link-icon"></a>
+                    <a href="https://mzsheets.com/wishlist/" onclick="addToWishlist()" class="wishlist-button"><img src="../../data/assets/star-filled.png" alt="" class="item-link-icon"></a>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <footer>
         <div id="main-footer"></div>
     </footer>
@@ -78,6 +80,8 @@
                 document.querySelector('.item-thumbnail').src = item.image;
                 document.querySelector('.item-name').innerText = item.name;
                 document.querySelector('.item-link').href = item.link;
+                document.querySelector('.item-link').setAttribute('target', '_blank');
+                document.querySelector('.item-link').setAttribute('rel', 'noopener noreferrer');
 
                 // Get currency if available
                 const currency = getCookie('currency') || 'usd';
