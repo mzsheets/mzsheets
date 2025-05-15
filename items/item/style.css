@@ -43,8 +43,8 @@ body {
     flex-direction: column;
     justify-content: end;
     align-items: start;
-    padding: 20px;
     text-align: left;
+    padding: 20px;
 }
 .item-name {
     font-family: "Roboto Slab", sans-serif;
@@ -67,23 +67,33 @@ body {
 .item-controls {
     display: flex;
     width: fit-content;
-}
-.item-link-icon {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-}
-.item-controls {
-    width: 100%;
-    display: flex;
-}
-.item-controls a {
-    font-style: normal;
-    text-decoration: none;
-    cursor: pointer;
     margin-top: 20px;
-    margin-right: 10px;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
 }
-.wishlist-button {
-    /*margin-left: auto;*/
+.item-button {
+    background-color: black;
+    color: #eee;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 0.9em;
+    width: 100%;
+    transition: background-color 200ms ease;
+}
+.item-button:hover {
+    background-color: #333;
+    color: #eee;
+    transition: background-color 200ms ease;
+}
+.cnfans-link {
+    background-color: #ff2727;
+    color: #eee;
+}
+.cnfans-link:hover {
+    background-color: #ff4848;
+    color: #eee;
 }
