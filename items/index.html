@@ -92,7 +92,7 @@
     </footer>
     <script>
         // Display options
-        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 400)); // Default number of items per row
+        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 350)); // Default number of items per row
         const numRowsPerPage = 16; // Default number of rows per page
 
         // Get query parameters
@@ -123,7 +123,7 @@
         setCookie('currency', currency, 365);
 
         // Load the navbar
-        fetch('https://mzsheets.com/data/components/navbar.html')
+        fetch('../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -140,8 +140,8 @@
                 updateSearchQuery(query);
 
                 // Handle search input
-                document.getElementById('navbar-search-input').addEventListener('input', handleSearchInput);
-                document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
+                document.getElementById('search-form').addEventListener('submit', handleSearchInput);
+                document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
 
                 // Handle sort by option
                 document.querySelector('.store-sort-by-option').addEventListener('change', (event) => {
@@ -183,7 +183,7 @@
         );
 
         // Load the footer
-        fetch('https://mzsheets.com/data/components/footer.html')
+        fetch('../data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;
@@ -226,8 +226,9 @@
 
         // Handle search query
         function handleSearchInput(event) {
-            const inQuery = event.target.value.toLowerCase(); // Get the search query
-            updateSearchQuery(inQuery);
+            event.preventDefault();
+            const searchValue = event.target.querySelector('input').value.toLowerCase();
+            updateSearchQuery(searchValue);
         }
 
         // Update the current search query

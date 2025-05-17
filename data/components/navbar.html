@@ -1,17 +1,19 @@
 <nav class="component-page-navbar">
     <div class="navbar-container">
         <a class="navbar-title" href="https://mzsheets.com/home">MZSHEETS</a>
-        <input type="text" spellcheck="false" placeholder="Search..." id="navbar-search-input">
+        <form id="search-form">
+            <input type="text" spellcheck="false" placeholder="Search..." id="navbar-search-input">
+        </form>
         <ul>
             <li><a
                 class="navbar-item"
                 href="https://cnfans.com/register?ref=3260913"
-                ><b>Register Now!</b></a>
+                >Register</a>
             </li>
             <li><a
                 class="navbar-item"
-                onclick="const iDisplayMode=document.querySelector('.navbar-items-dropdown-container').style.display;document.querySelector('.navbar-items-dropdown-container').style.display=iDisplayMode==='block'?'none':'block';"
-                >Items&nbsp;<div class="navbar-icon-normal-container"><img class="navbar-icon-normal" src="https://mzsheets.com/data/assets/down-arrow.png" alt=""></div></a>
+                href="https://mzsheets.com/items"
+                >Items</a>
             </li>
             <li class="navbar-search-icon">
                 <a
@@ -27,23 +29,9 @@
         </ul>
     </div>
     <div
-    onmouseleave="document.querySelector('.navbar-items-dropdown-container').style.display = 'none';"
-    class="navbar-items-dropdown-container"
-    >
-        <ul class="navbar-items-dropdown">
-            <li><h3>Clothing</h3></li>
-            <li><a href="https://mzsheets.com/items/">All Items</a></li>
-            <li><a href="https://mzsheets.com/items/?category=shoes">Shoes</a></li>
-            <li><a href="https://mzsheets.com/items/?category=hoodies-sweaters">Hoodies/Sweaters</a></li>
-            <li><a href="https://mzsheets.com/items/?category=t-shirts">T-Shirts</a></li>
-            <li><a href="https://mzsheets.com/items/?category=jackets">Jackets</a></li>
-            <li><a href="https://mzsheets.com/items/?category=pants-shorts">Pants/Shorts</a></li>
-            <li><a href="https://mzsheets.com/items/?category=headwear">Headwear</a></li>
-            <li><a href="https://mzsheets.com/items/?category=accessories">Accessories</a></li>
-            <li><a href="https://mzsheets.com/items/?category=other-stuff">Other stuff</a></li>
-        </ul>
-    </div>
     <div class="navbar-m-search-dropdown-container">
-        <input type="text" spellcheck="false" placeholder="Search..." id="navbar-m-search-input" class="navbar-m-search-input">
+        <form id="search-form-m">
+            <input type="text" spellcheck="false" placeholder="Search..." id="navbar-m-search-input" class="navbar-m-search-input">
+        </form>
     </div>
 </nav>

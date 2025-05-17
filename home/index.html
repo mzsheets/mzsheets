@@ -36,8 +36,10 @@
                 <div class="hero-content">
                     <h1>Welcome to MZsheets</h1>
                     <p>The ultimate cnfans sheet. Thousands of cnfans product links at your fingertips.</p>
-                    <a href="https://mzsheets.com/items" class="cta-button">Browse Items</a>
-                    <a href="https://discord.gg/qDPGkK3Ddp" class="discord-invite">Join the Discord</a>
+                    <div class="hero-interaction">
+                        <a href="https://mzsheets.com/items" class="cta-button">Browse Items</a>
+                        <a href="https://discord.gg/qDPGkK3Ddp" class="discord-invite">Join the Discord</a>
+                    </div>
                 </div>
             </section>
             <section class="info-cards">
@@ -91,8 +93,8 @@
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
 
-                document.getElementById('navbar-search-input').addEventListener('input', handleSearchInput);
-                document.getElementById('navbar-m-search-input').addEventListener('input', handleSearchInput);
+                document.getElementById('search-form').addEventListener('submit', handleSearchInput);
+                document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
             })
             .catch(error => console.error('Error loading navbar:', error)
         );
@@ -105,6 +107,14 @@
             })
             .catch(error => console.error('Error loading footer:', error)
         );
+
+        // Function to handle search input
+        function handleSearchInput(event) {
+            event.preventDefault();
+            const searchValue = event.target.querySelector('input').value.toLowerCase();
+            const searchUrl = `https://mzsheets.com/items/?query=${encodeURIComponent(searchValue)}`;
+            window.location.href = searchUrl;
+        }
     </script>
 </body>
 </html>

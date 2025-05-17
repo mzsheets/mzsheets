@@ -23,9 +23,14 @@
                 <h1 class="item-name"></h1>
                 <p class="item-price"></p>
                 <div class="item-controls">
-                    <a href="https://mzsheets.com/wishlist/" onclick="addToWishlist()" class="item-button wishlist-button">Add to wishlist</a>
-                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-button cnfans-link">View on cnfans</a>
+                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link" title="Cnfans"><img src="../../data/assets/cnfans.png" alt="Cnfans" class="item-link-icon"></a>
+                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link" title="Acbuy"><img src="../../data/assets/acbuy.png" alt="Acbuy" class="item-link-icon"></a>
+                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link" title="Mulebuy"><img src="../../data/assets/mulebuy.png" alt="Mulebuy" class="item-link-icon"></a>
+                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link" title="Oopbuy"><img src="../../data/assets/oopbuy.png" alt="Oopbuy" class="item-link-icon"></a>
+                    <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link" title="Ponybuy"><img src="../../data/assets/ponybuy.png" alt="Ponybuy" class="item-link-icon"></a>
+                    <a href="https://mzsheets.com/wishlist/" onclick="addToWishlist()" class="wishlist-button" title="Add to Wishlist"><img src="../../data/assets/star.png" alt="Wishlist" class="item-link-icon"></a>
                 </div>
+                <a href="https://www.youtube.com/watch?v=i17H4_WIWkg" class="warning-bypass">How to bypass "non-purchasable" item</a>
             </div>
         </div>
     </main>
@@ -58,7 +63,7 @@
         );
 
         // Get item by ID
-        fetch('https://mzsheets.com/data/products-data.json')
+        fetch('../../data/products-data.json')
             .then(response => response.json())
             .then(data => {
                 if (!id) {
@@ -78,9 +83,26 @@
                 // Load the items information
                 document.querySelector('.item-thumbnail').src = item.image;
                 document.querySelector('.item-name').innerText = item.name;
-                document.querySelector('.cnfans-link').href = item.link;
-                document.querySelector('.cnfans-link').setAttribute('target', '_blank');
-                document.querySelector('.cnfans-link').setAttribute('rel', 'noopener noreferrer');
+
+                const links = document.querySelectorAll('.item-link');
+                links.forEach(link => {
+                    const agent = link.getAttribute('title').toLowerCase();
+                    if (agent === 'cnfans') {
+                        link.href = item.link;
+                        link.setAttribute('target', '_blank');
+                        link.setAttribute('rel', 'noopener noreferrer');
+                        return;
+                    }
+                    const convertedLink = convertLink(item.link, agent);
+                    if (convertedLink) {
+                        link.href = convertedLink;
+                        link.setAttribute('target', '_blank');
+                        link.setAttribute('rel', 'noopener noreferrer');
+                    } else {
+                        // Hide the link if conversion fails
+                        link.style.display = 'none';
+                    }
+                })
 
                 // Get currency if available
                 const currency = getCookie('currency') || 'usd';
@@ -189,6 +211,60 @@
                 setCookie('wishlist', JSON.stringify(wishlist), 365); // Store for 265 days
             } else {
                 alert('Item is already in the wishlist!');
+            }
+        }
+
+        function convertLink(link, agent) {
+            const url = new URL(link);
+            const params = new URLSearchParams(url.search);
+            const itemId = params.get('id');
+            const shopType = params.get('shop_type');
+
+            if (!itemId || !shopType) {
+                return null;
+            }
+
+            if (agent === "acbuy") {
+                const acbuySourceMap = {
+                    "weidian": "WD",
+                    "taobao": "TB",
+                    "ali_1688": "AL"
+                }
+                const acbuySource = acbuySourceMap[shopType.toLowerCase()];
+                if (acbuySource) {
+                    return `https://acbuy.com/product/?id=${itemId}&source=${acbuySource}`;
+                }
+                return null;
+            }
+            else if (agent === "mulebuy") {
+                return `https://mulebuy.com/product/?shop_type=${shopType}&id=${itemId}`;
+            }
+            else if (agent === "joyagoo") {
+                return `https://joyagoo.com/product?id=${itemId}&platform=${shopType}`;
+            }
+            else if (agent === "ponybuy") {
+                const ponyBuySourceMap = {
+                    "weidian": "weidian",
+                    "taobao": "taobao",
+                    "ali_1688": "1688"
+                }
+                const ponyBuySource = ponyBuySourceMap[shopType.toLowerCase()];
+                if (ponyBuySource) {
+                    return `https://ponybuy.com/en-gb/goods?product_id=${itemId}&platform=${ponyBuySource}`;
+                }
+                return null;
+            }
+            else if (agent === "oopbuy") {
+                const oopBuySourceMap = {
+                    "weidian": "weidian",
+                    "taobao": "1",
+                    "ali_1688": "0",
+                }
+                const oopBuySource = oopBuySourceMap[shopType.toLowerCase()];
+                if (oopBuySource) {
+                    return `https://oopbuy.com/product/${oopBuySource}/${itemId}`;
+                }
+                return null;
             }
         }
     </script>

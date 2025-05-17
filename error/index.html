@@ -50,6 +50,9 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
+
+                document.getElementById('search-form').addEventListener('submit', handleSearchInput);
+                document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
             })
             .catch(error => console.error('Error loading navbar:', error)
         );
@@ -93,6 +96,14 @@
         // Load the error message
         document.querySelector('.error-title').innerText = errorTitle;
         document.querySelector('.error-message').innerText = errorMessage;
+
+        // Function to handle search input
+        function handleSearchInput(event) {
+            event.preventDefault();
+            const searchValue = event.target.querySelector('input').value.toLowerCase();
+            const searchUrl = `https://mzsheets.com/items/?query=${encodeURIComponent(searchValue)}`;
+            window.location.href = searchUrl;
+        }
     </script>
 </body>
 </html>
