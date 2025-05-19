@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MZsheets - Your go-to source for cnfans links. Find everything you need in one place.">
+    <meta name="keywords" content="cnfans, mzsheets, links, cnfans links, cnfans items, cnfans database, reps, clothes, fashion, designer, shoes, trainers, kicks, pandabuy, kakobuy, taobao, aliexpress, shein, dhgate, alibaba, cnfans shoes, cnfans clothes, cnfans fashion, cnfans designer, cnfans trainers, cnfans kicks">
+    <meta name="author" content="Max Tasker">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MZsheets - Your go-to source for cnfans links">
+    <meta property="og:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
+    <meta property="og:url" content="https://mzsheets.com/home">
+    <meta property="og:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MZsheets - Your go-to source for cnfans links">
+    <meta name="twitter:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
+    <meta name="twitter:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
+
+    <link rel="stylesheet" href="../data/components/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../data/assets/mzsheets/logo-600-black-white.png" type="image/x-icon">
+    <title>Link converter | MZsheets</title>
+
+    <!-- Redirect to home page -->
+    <meta http-equiv="refresh" content="0; url=../home">
+</head>
+<body>
+    <div id="top"></div>
+    <header>
+        <div id="main-navbar"></div>
+    </header>
+    <main class="page-content">
+        <!--
+        <section class="converter-container">
+            <h1>Convert link</h1>
+            <form class="link-container-form" onsubmit="handleConvertLink()">
+                <input type="text" id="link-input" placeholder="Enter product link..." oninput="handleLinkChange(event)">
+            </form>
+            <button id="convert-button" onclick="handleConvertLink()" disabled>No link provided</button>
+        </section>
+        -->
+    </main>
+    <footer>
+        <div id="main-footer"></div>
+    </footer>
+    <script>
+        // Load the navbar
+        fetch('../data/components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-navbar').innerHTML = data;
+
+                document.getElementById('search-form').addEventListener('submit', handleSearchInput);
+                document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
+            })
+            .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
+        );
+
+        // Function to handle link input change
+        function handleLinkChange(event) {
+            const inputValue = event.target.value;
+            const convertButton = document.getElementById('convert-button');
+            
+            const allowedSites = [
+                'taobao', 'weidian', '1688', 'cnfans', 'acbuy', 'oopbuy', 'ponybuy', 'mulebuy'
+            ];
+            try {
+                const url = new URL(inputValue);
+                if (!allowedSites.some(site =>
+                    url.hostname.toLowerCase().includes(site) ||
+                    url.href.toLowerCase().includes(site)
+                )) {
+                    convertButton.innerText = 'Unknown website';
+                    convertButton.setAttribute('disabled', '');
+                    return;
+                }
+                const urlParams = new URLSearchParams(url.search);
+                const itemId = urlParams.get('id') || urlParams.get('product') || urlParams.get('product_id');
+                const itemSource = urlParams.get('platform') || urlParams.get('shop_type') || urlParams.get('source');
+                if (!itemId || !itemSource) {
+                    convertButton.innerText = 'Cannot convert';
+                    convertButton.setAttribute('disabled', '');
+                    return;
+                }
+            } catch (e) {
+                convertButton.innerText = 'Invalid link';
+                convertButton.setAttribute('disabled', '');
+                return;
+            }
+            convertButton.innerText = 'Convert';
+            convertButton.removeAttribute('disabled');
+        }
+
+        // Function to convert the link
+        function handleConvertLink(event) {
+            event.preventDefault();
+            const searchValue = document.getElementById('link-input').value;
+            
+        }
+
+        // Function to handle search input
+        function handleSearchInput(event) {
+            event.preventDefault();
+            const searchValue = event.target.querySelector('input').value.toLowerCase();
+            const searchUrl = `https://mzsheets.com/items/?query=${encodeURIComponent(searchValue)}`;
+            window.location.href = searchUrl;
+        }
+    </script>
+</body>
+</html>
