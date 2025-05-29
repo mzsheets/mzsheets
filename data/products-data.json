@@ -3151,11 +3151,11 @@
     {
         "origin": "cnfanssheets",
         "id": 315,
-        "name": "Dior B22 (6 Colorways)",
+        "name": "Dior B22 (10 Colorways)",
         "image": "https://mzsheets.com/data/assets/product-images/315.webp",
-        "price": 54.9,
-        "link": "https://cnfans.com/product/?shop_type=weidian&id=7237341613&ref=3260913",
-        "currency": "usd",
+        "price": 99.66,
+        "link": "https://cnfans.com/product?id=765005637664&platform=TAOBAO&ref=3260913",
+        "currency": "gbp",
         "category": "shoes"
     },
     {
@@ -3171,11 +3171,11 @@
     {
         "origin": "cnfanssheets",
         "id": 317,
-        "name": "Dior B30 (10 Colorways)",
+        "name": "Dior B30 (30 Colorways)",
         "image": "https://mzsheets.com/data/assets/product-images/317.webp",
-        "price": 96.62,
-        "link": "https://cnfans.com/product/?shop_type=taobao&id=659731978300&ref=3260913",
-        "currency": "usd",
+        "price": 64.49,
+        "link": "https://cnfans.com/product?platform=TAOBAO&id=830817506303&ref=3260913",
+        "currency": "gbp",
         "category": "shoes"
     },
     {
@@ -3217,6 +3217,16 @@
         "link": "https://cnfans.com/product/?shop_type=taobao&id=726525578240&ref=3260913",
         "currency": "usd",
         "category": "shoes"
+    },
+    {
+        "origin": "cnfanssheets",
+        "id": 321,
+        "name": "More Louis Vuitton LV Skate Sneakers (21 Varients)",
+        "image": "https://mzsheets.com/data/assets/product-images/321.webp",
+        "price": 74.92,
+        "currency": "gbp",
+        "category": "shoes",
+        "link": "https://cnfans.com/product?id=918888917713&platform=TAOBAO"
     },
     {
         "origin": "cnfanssheets",
