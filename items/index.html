@@ -36,6 +36,19 @@
         </section>
         <section class="store-content-header">
             <div class="store-content-selection-container">
+                <p>Category: </p>
+                <select name="category" class="category-option">
+                    <option value="all" selected>All Items</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="hoodies-sweaters">Hoodies/Sweaters</option>
+                    <option value="t-shirts">T-Shirts</option>
+                    <option value="jackets">Jackets</option>
+                    <option value="pants-shorts">Pants/Shorts</option>
+                    <option value="headwear">Headwear</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
                 <p>Sort by: </p>
                 <select name="sort-by" class="store-sort-by-option">
                     <option value="default" selected>Default</option>
@@ -114,6 +127,7 @@
         }
 
         // Set filter options
+        document.querySelector('.category-option').value = category || 'all';
         document.querySelector('.store-sort-by-option').value = sortBy;
         document.querySelector('.store-currency-option').value = currency;
         document.querySelector('.store-items-per-row-option').value = itemsPerRow;
@@ -142,6 +156,21 @@
                 // Handle search input
                 document.getElementById('search-form').addEventListener('submit', handleSearchInput);
                 document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
+
+                // Handle category option
+                document.querySelector('.category-option').addEventListener('change', (event) => {
+                    const categoryOption = event.target.value; // Get the selected category
+
+                    const url = new URL(window.location);
+                    if (categoryOption === 'all') {
+                         // Remove category from URL if 'all' is selected
+                        url.searchParams.delete('category');
+                    } else {
+                        // Set the selected category
+                        url.searchParams.set('category', categoryOption);
+                    }
+                    window.location.href = url;
+                });
 
                 // Handle sort by option
                 document.querySelector('.store-sort-by-option').addEventListener('change', (event) => {
