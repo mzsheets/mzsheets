@@ -45,6 +45,7 @@ body {
     align-items: start;
     text-align: left;
     padding: 20px;
+    margin-left: 10px;
 }
 .item-name {
     font-family: "Roboto Slab", sans-serif;
@@ -72,6 +73,23 @@ body {
     width: 100%;
     gap: 10px;
 }
+.item-link {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff3535;
+    color: white;
+    text-decoration: none;
+    font-family: 'Roboto Slab', sans-serif;
+    border-radius: 10px;
+    transition: background-color 200ms ease;
+    font-size: 1em;
+    text-align: center;
+}
+.item-link:hover {
+    color: white;
+    background-color: rgb(194, 39, 39);
+    transition: background-color 200ms ease;
+}
 .item-link-icon {
     width: 30px;
     height: 30px;
@@ -84,5 +102,5 @@ body {
     margin-top: 6px;
     color: #333;
     font-family: "Roboto Slab", sans-serif;
-    font-size: 0.6em;
+    font-size: 0.75em;
 }
