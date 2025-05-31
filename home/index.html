@@ -42,19 +42,9 @@
                     </div>
                 </div>
             </section>
-            <section class="info-cards">
-                <div class="card">
-                    <h2>Why use MZsheets?</h2>
-                    <p>We only provide top quality items at the best price, with over 2000 items available, rest assured, you will always be able to find whatever you need.</p>
-                </div>
-                <div class="card">
-                    <h2>How Cnfans Sheets Work</h2>
-                    <p>Cnfans sheets are collections of items you can purchase on Cnfans website, ensuring the items are high quality and reasonably priced is our top priority.</p>
-                </div>
-                <div class="card">
-                    <h2>How to Use MZsheets</h2>
-                    <p>Once you've found the item you want, click the Cnfans button to be redirected to the Cnfans product page, where you can purchase your item.</p>
-                </div>
+            <section class="trending-items">
+                <h2 class="trending-items-title">Trending Items</h2>
+                <div class="trending-items-list"></div>
             </section>
             <section class="features">
                 <h2>Why Choose MZsheets?</h2>
@@ -78,8 +68,8 @@
             </section>
             <section class="cta-section">
                 <h2>Ready to Start Shopping?</h2>
-                <p>Discover thousands of products and make your shopping experience easier with MZsheets.</p>
                 <a href="https://cnfans.com/register?ref=3260913" class="cta-button">Register on Cnfans</a>
+                <a href="../items" class="cta-button">Start browsing</a>
             </section>
         </div>
     </main>
@@ -115,6 +105,40 @@
             const searchUrl = `https://mzsheets.com/items/?query=${encodeURIComponent(searchValue)}`;
             window.location.href = searchUrl;
         }
+
+        const tredingItemIds = [
+            642,
+            438,
+            761,
+            749,
+            1425
+        ]
+
+        // Load trending items
+        fetch('../data/products-data.json')
+            .then(response => response.json())
+            .then(data => {
+                const trendingItemsList = document.querySelector('.trending-items-list');
+
+                tredingItemIds.forEach(itemId => {
+                    const item = data.find(product => product.id === itemId);
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'trending-item-card';
+                    itemElement.innerHTML = `
+                        <a href="${item.link}" target="_blank">
+                            <img src="${item.image}" alt="${item.name}">
+                            <h3>${item.name}</h3>
+                        </a>
+                    `;
+                    trendingItemsList.appendChild(itemElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading trending items:', error);
+                const trendingItemsList = document.querySelector('.trending-items-list');
+                trendingItemsList.innerHTML = '<p>Failed to load trending items. Please try again later.</p>';
+            }
+        );
     </script>
 </body>
 </html>

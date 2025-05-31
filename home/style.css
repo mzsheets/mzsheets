@@ -19,7 +19,6 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
 }
 
 .home-container {
@@ -85,39 +84,76 @@ a:hover {
     transition: background-color 200ms ease, color 200ms ease;
 }
 
-.info-cards {
+.trending-items {
+    margin: 30px 0;
+    text-align: center;
+}
+.trending-items-title {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.8em;
+    color: #333;
+    margin: 0;
+    margin-bottom: 40px;
+}
+.trending-items-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
-    background-color: #fff;
+    gap: 50px;
 }
-.info-cards .card {
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
+.trending-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     width: 300px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.trending-item-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    transition: transform 200ms ease-in, box-shadow 200ms ease;
     cursor: pointer;
 }
-.info-cards .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.trending-item-card img {
+    width: auto;
+    height: auto;
+    max-height: 180px;
+    border-radius: 10px;
+    object-fit: contain;
 }
-.info-cards .card h2 {
+.trending-item-card h3 {
     font-family: 'Roboto Slab', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #333;
-    margin-bottom: 15px;
+    margin: 12px 0 0 0;
 }
-.info-cards .card p {
+.trending-item-card p {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 1em;
     color: #555;
-    line-height: 1.5;
+    margin: 0;
+}
+@media (max-width: 768px) {
+    .trending-items-list {
+        gap: 10px;
+    }
+    .trending-item-card {
+        width: 150px;
+        padding: 12px;
+    }
+    .trending-item-card img {
+        max-height: 80px;
+    }
+    .trending-item-card h3 {
+        font-size: 0.7em;
+    }
+    .trending-item-card p {
+        font-size: 0.5em;
+    }
 }
 
 .features {
@@ -129,6 +165,7 @@ a:hover {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 2em;
     color: #333;
+    margin: 0;
     margin-bottom: 30px;
 }
 .feature-list {
@@ -194,12 +231,8 @@ a:hover {
 .cta-section h2 {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 2em;
-    margin-bottom: 20px;
-}
-.cta-section p {
-    font-family: 'Roboto Slab', sans-serif;
-    font-size: 1.2em;
-    margin-bottom: 30px;
+    margin: 0;
+    margin-bottom: 40px;
 }
 .cta-section .cta-button {
     font-family: 'Roboto Slab', sans-serif;
@@ -209,12 +242,12 @@ a:hover {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 200ms ease, color 200ms ease;
+    transition: background-color 200ms ease;
+    margin: 0 5px;
 }
 .cta-section .cta-button:hover {
-    background-color: #333;
-    color: #fff;
-    transition: background-color 200ms ease, color 200ms ease;
+    background-color: #d0d0d0;
+    transition: background-color 200ms ease;
 }
 
 @media (max-width: 768px) {
