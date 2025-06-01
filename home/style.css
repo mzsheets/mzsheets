@@ -155,6 +155,24 @@ a:hover {
         font-size: 0.5em;
     }
 }
+.trending-items-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.trending-items-footer a {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1em;
+    color: #333;
+    text-decoration: underline;
+    margin: 0 10px;
+    transition: color 200ms ease;
+}
+.trending-items-footer a:hover {
+    color: #555;
+    transition: color 200ms ease;
+}
 
 .features {
     background-color: #f0f0f0;

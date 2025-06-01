@@ -1,0 +1,212 @@
+body {
+    font-family: 'Roboto Slab', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+
+.page-content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trending-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hottest-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+}
+.hottest-item-container {
+    display: flex;
+    justify-content: space-around;
+    background-image: url('../../data/assets/trending/trending-bg-1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 50px;
+}
+@media (max-width: 768px) {
+    .hottest-item-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.hottest-item-info {
+    display: flex;
+    margin: auto 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1;
+}
+.hottest-item-info h2 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 3em;
+    color: #fff;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.hottest-item-info h3 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+    margin: 0;
+    margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+    .hottest-item-info h2 {
+        font-size: 2em;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .hottest-item-info h3 {
+        font-size: 1em;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+}
+.hottest-item-link {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.4em;
+    background-color: #fff;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+    .hottest-item-link {
+        font-size: 1em;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    }
+}
+.hottest-item-link:hover {
+    color: #333;
+    text-decoration: underline #ffc9f6;
+}
+.hottest-item-card img {
+    width: auto;
+    height: auto;
+    max-height: 300px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+@media (max-width: 768px) {
+    .hottest-item-card img {
+        max-height: 200px;
+    }
+}
+
+.trending-items-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+@media (max-width: 680px) {
+    .trending-items-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+.trending-item-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 325px;
+    box-sizing: border-box;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.trending-item-card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.trending-item-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    transition: transform 200ms ease-in, box-shadow 200ms ease;
+    cursor: pointer;
+}
+.trending-item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
+    justify-content: space-between;
+    height: 100%;
+}
+.trending-item-card img {
+    width: auto;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+.trending-item-card h3 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.2em;
+    color: #333;
+    margin: 12px 0 0 0;
+}
+.trending-item-card p {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1em;
+    color: #666;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 0 2px;
+}
+.trending-item-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 30px;
+    font-size: 0.65em;
+    font-weight: bold;
+}
+
+.items-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+}
+.see-more-button {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1em;
+    color: #333;
+    border: 2px solid #333;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+.see-more-button:hover {
+    text-decoration: underline;
+    color: #333;
+}

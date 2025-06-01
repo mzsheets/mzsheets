@@ -20,10 +20,10 @@
     <meta name="twitter:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
     <meta name="twitter:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
 
-    <link rel="stylesheet" href="../data/components/globalstyle.css">
+    <link rel="stylesheet" href="../../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../data/assets/mzsheets/logo-600-black-white.png" type="image/x-icon">
-    <title>Home | MZsheets</title>
+    <link rel="shortcut icon" href="../../data/assets/mzsheets/logo-600-black-white.png" type="image/x-icon">
+    <title>Trending | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
@@ -31,49 +31,24 @@
         <div id="main-navbar"></div>
     </header>
     <main class="page-content">
-        <div class="home-container">
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>Welcome to MZsheets</h1>
-                    <p>The ultimate cnfans sheet. Thousands of cnfans product links at your fingertips.</p>
-                    <div class="hero-interaction">
-                        <a href="https://mzsheets.com/items" class="cta-button">Browse Items</a>
-                        <a href="https://discord.gg/qDPGkK3Ddp" class="discord-invite">Join the Discord</a>
+        <div class="trending-container">
+            <section class="hottest-item">
+                <div class="hottest-item-container">
+                    <div class="hottest-item-info">
+                        <h2>HOTTEST ITEM</h2>
+                        <h3 class="hottest-item-name">Denim Tears Hoodies & Pants</h3>
+                        <a href="../item/?id=642" class="hottest-item-link">View Item</a>
                     </div>
+                    <a href="" class="hottest-item-card">
+                        <img src="../../data/assets/trending/trending-image-1.webp" alt="Hottest Item">
+                    </a>
                 </div>
             </section>
             <section class="trending-items">
-                <h2 class="trending-items-title">Trending Items</h2>
                 <div class="trending-items-list"></div>
-                <div class="trending-items-footer">
-                    <a href="../items/trending">See More</a>
-                    <a href="../items">All Items</a>
+                <div class="items-footer">
+                    <a href="../" class="see-more-button">All Items</a>
                 </div>
-            </section>
-            <section class="features">
-                <h2>Why Choose MZsheets?</h2>
-                <div class="feature-list">
-                    <div class="feature">
-                        <img src="../data/assets/magnifying-glass.png" alt="Easy to Use">
-                        <h3>Easy to Use</h3>
-                        <p>Find your products easily and with minimal effort with our easy to navigate interface and search bar.</p>
-                    </div>
-                    <div class="feature">
-                        <img src="../data/assets/quality.png" alt="Everything, here">
-                        <h3>Top Quality</h3>
-                        <p>All items listed come directly from the best sellers, meaning your items are always high quality and affordable.</p>
-                    </div>
-                    <div class="feature">
-                        <img src="../data/assets/updating.png" alt="Updated Frequently">
-                        <h3>Updated Frequently</h3>
-                        <p>This sheet is updated frequently with new items, so we always have whatever you need.</p>
-                    </div>
-                </div>
-            </section>
-            <section class="cta-section">
-                <h2>Ready to Start Shopping?</h2>
-                <a href="https://cnfans.com/register?ref=3260913" class="cta-button">Register on Cnfans</a>
-                <a href="../items" class="cta-button">Start browsing</a>
             </section>
         </div>
     </main>
@@ -82,7 +57,7 @@
     </footer>
     <script>
         // Load the navbar
-        fetch('../data/components/navbar.html')
+        fetch('../../data/components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-navbar').innerHTML = data;
@@ -90,17 +65,15 @@
                 document.getElementById('search-form').addEventListener('submit', handleSearchInput);
                 document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
             })
-            .catch(error => console.error('Error loading navbar:', error)
-        );
+            .catch(error => console.error('Error loading navbar:', error));
 
         // Load the footer
-        fetch('../data/components/footer.html')
+        fetch('../../data/components/footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-footer').innerHTML = data;
             })
-            .catch(error => console.error('Error loading footer:', error)
-        );
+            .catch(error => console.error('Error loading footer:', error));
 
         // Function to handle search input
         function handleSearchInput(event) {
@@ -110,28 +83,40 @@
             window.location.href = searchUrl;
         }
 
-        const tredingItemIds = [
+        const trendingItemIds = [
             642,
             438,
             761,
             749,
-            1425
-        ]
+            1425,
+        ];
+
+        const discounts = {
+            642: 92,
+            438: 90,
+            761: 65,
+            749: 83,
+            1425: 75,
+        };
 
         // Load trending items
-        fetch('../data/products-data.json')
+        fetch('../../data/products-data.json')
             .then(response => response.json())
             .then(data => {
                 const trendingItemsList = document.querySelector('.trending-items-list');
-
-                tredingItemIds.forEach(itemId => {
+                trendingItemIds.forEach(itemId => {
                     const item = data.find(product => product.id === itemId);
+                    if (!item) return;
                     const itemElement = document.createElement('div');
                     itemElement.className = 'trending-item-card';
                     itemElement.innerHTML = `
-                        <a href="${item.link}" target="_blank">
+                        <span class="trending-item-badge">-${discounts[itemId]}%</span>
+                        <a href="../item/?id=${itemId}">
                             <img src="${item.image}" alt="${item.name}">
-                            <h3>${item.name}</h3>
+                            <div class="trending-item-info">
+                                <h3>${item.name}</h3>
+                                <p class="trending-item-price">${item.price ? '$' + Number(item.price).toFixed(2) : ''}</p>
+                            </div>
                         </a>
                     `;
                     trendingItemsList.appendChild(itemElement);
