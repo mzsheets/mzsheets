@@ -1,0 +1,9 @@
+- Update item page
+** Fix mobile not being tall enough
+** Add more information
+- Add search button to search bar
+
+- Update item list
+** Convert to weidian/taobao/1688 link
+** Auto adjust price (measure in CNY)
+** Auto detect deleted items

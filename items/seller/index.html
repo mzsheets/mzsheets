@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="../../data/components/globalstyle.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="../../data/assets/mzsheets/logo-600-black-white.png" type="image/x-icon">
-    <title>Trending | MZsheets</title>
+    <title>Seller | MZsheets</title>
 </head>
 <body>
     <div id="top"></div>
@@ -56,6 +56,9 @@
         <div id="main-footer"></div>
     </footer>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const sellerName = urlParams.get('seller');
+        
         // Load the navbar
         fetch('../../data/components/navbar.html')
             .then(response => response.text())
@@ -84,52 +87,6 @@
             const searchUrl = `https://mzsheets.com/items/?query=${encodeURIComponent(searchValue)}`;
             window.location.href = searchUrl;
         }
-
-        const trendingItemIds = [
-            642,
-            438,
-            761,
-            749,
-            1425,
-        ];
-
-        const discounts = {
-            642: 92,
-            438: 90,
-            761: 65,
-            749: 83,
-            1425: 75,
-        };
-
-        // Load trending items
-        fetch('../../data/products-data.json')
-            .then(response => response.json())
-            .then(data => {
-                const trendingItemsList = document.querySelector('.trending-items-list');
-                trendingItemIds.forEach(itemId => {
-                    const item = data.find(product => product.id === itemId);
-                    if (!item) return;
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'trending-item-card';
-                    itemElement.innerHTML = `
-                        <span class="trending-item-badge">-${discounts[itemId]}%</span>
-                        <a href="../item/?id=${itemId}">
-                            <img src="${item.image}" alt="${item.name}">
-                            <div class="trending-item-info">
-                                <h3>${item.name}</h3>
-                                <p class="trending-item-price">${item.price ? '$' + Number(item.price).toFixed(2) : ''}</p>
-                            </div>
-                        </a>
-                    `;
-                    trendingItemsList.appendChild(itemElement);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading trending items:', error);
-                const trendingItemsList = document.querySelector('.trending-items-list');
-                trendingItemsList.innerHTML = '<p>Failed to load trending items. Please try again later.</p>';
-            }
-        );
     </script>
 </body>
 </html>
