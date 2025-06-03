@@ -52,8 +52,19 @@ body {
     .store-content-header {
         justify-content: center;
     }
-    .store-content-selection-container:nth-child(3), /* Items per row */
-    .store-content-selection-container:nth-child(4)  /* Rows per page */ {
+    .store-content-selection-container {
+        margin-right: 10px;
+    }
+    .store-content-header p, .store-content-header a {
+        font-size: 0.45em;
+        margin-right: 5px;
+    }
+    .store-content-header select {
+        font-size: 0.45em;
+        padding: 3px;
+    }
+    .store-content-selection-container:nth-child(4), /* Items per row */
+    .store-content-selection-container:nth-child(5)  /* Rows per page */ {
         display: none;
     }
 }
