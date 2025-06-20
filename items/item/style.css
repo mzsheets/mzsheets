@@ -41,7 +41,7 @@ body {
 .item-info {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: start;
     align-items: start;
     text-align: left;
     box-sizing: border-box;
@@ -55,6 +55,15 @@ body {
         margin-left: 0;
     }
 }
+.item-info p {
+    font-family: "Roboto Slab", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1em;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
 .item-name {
     font-family: "Roboto Slab", sans-serif;
     font-optical-sizing: auto;
@@ -67,16 +76,16 @@ body {
 .item-price {
     font-family: "Roboto Slab", sans-serif;
     font-optical-sizing: auto;
-    font-size: 1em;
-    font-style: normal;
+    font-size: 1.1em;
     color: #333;
     margin: 0;
     padding: 0;
+    margin-bottom: 15px;
 }
 .item-controls {
     display: flex;
     width: fit-content;
-    margin-top: 20px;
+    margin-top: auto;
     justify-content: space-between;
     width: 100%;
     gap: 10px;

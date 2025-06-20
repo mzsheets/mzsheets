@@ -21,7 +21,11 @@
             <img alt="Item image" class="item-thumbnail">
             <div class="item-info">
                 <h1 class="item-name"></h1>
-                <p class="item-price"></p>
+                <h2 class="item-price"></h2>
+                <p class="item-batch" style="display: none;"></p>
+                <p class="item-best-batch" style="display: none;"></p>
+                <p class="item-seller" style="display: none;"></p>
+                <p class="item-weight" style="display: none;"></p>
                 <div class="item-controls">
                     <a href="https://mzsheets.com/error/Index.html?error-code=404" class="item-link" title="Cnfans">View on Cnfans</a>
                     <!-- May add support for these back in the future
@@ -42,7 +46,7 @@
     <script>
         // Get query parameters
         const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id') ? parseInt(urlParams.get('id')) : 1;
+        const id = urlParams.get('id') ? parseInt(urlParams.get('id')) : 1840;
 
         let item = null;
 
@@ -88,6 +92,26 @@
                 // Load the items information
                 document.querySelector('.item-thumbnail').src = item.image;
                 document.querySelector('.item-name').innerText = item.name;
+                if (item.batch && item.batch !== '') {
+                    const batchLabel = document.querySelector('.item-batch');
+                    batchLabel.style.display = 'block';
+                    batchLabel.innerHTML = `\u{1F6C8} Batch: <i>${item.batch}</i>`;
+                }
+                if (item.bestbatch && item.bestbatch !== '') {
+                    const bestBatchLabel = document.querySelector('.item-best-batch');
+                    bestBatchLabel.style.display = 'block';
+                    bestBatchLabel.innerHTML = `\u{1F6C8} Best Batch: <i>${item.bestbatch}</i>`;
+                }
+                if (item.seller && item.seller !== '') {
+                    const sellerLabel = document.querySelector('.item-seller');
+                    sellerLabel.style.display = 'block';
+                    sellerLabel.innerHTML = `\u{1F6C8} Seller: <i>${item.seller}</i>`;
+                }
+                if (item.weight && item.weight !== '') {
+                    const weightLabel = document.querySelector('.item-weight');
+                    weightLabel.style.display = 'block';
+                    weightLabel.innerHTML = `\u{1F6C8} Weight: <i>${item.weight}</i>`;
+                }
 
                 const links = document.querySelectorAll('.item-link');
                 links.forEach(link => {
