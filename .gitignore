@@ -5,7 +5,10 @@
 
 # Website utilities
 *.py
-tools/
+
+# Specific website tools that are in development
+tools/link-converter/
+tools/warning-bypass/
 
 # User-specific files
 *.rsuser

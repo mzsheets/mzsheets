@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MZsheets - Your go-to source for cnfans links. Find everything you need in one place.">
+    <meta name="keywords" content="cnfans, mzsheets, links, cnfans links, cnfans items, cnfans database, reps, clothes, fashion, designer, shoes, trainers, kicks, pandabuy, kakobuy, taobao, aliexpress, shein, dhgate, alibaba, cnfans shoes, cnfans clothes, cnfans fashion, cnfans designer, cnfans trainers, cnfans kicks">
+    <meta name="author" content="Max Tasker">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MZsheets - Your go-to source for cnfans links">
+    <meta property="og:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
+    <meta property="og:url" content="https://mzsheets.com/items">
+    <meta property="og:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MZsheets - Your go-to source for cnfans links">
+    <meta name="twitter:description" content="Find everything you need in one place with MZsheets. Thousands of cnfans items organized for easy access.">
+    <meta name="twitter:image" content="https://mzsheets.com/assets/mzsheets/banner-large.webp">
+
+    <link rel="stylesheet" href="../../data/components/globalstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../../data/assets/mzsheets/logo-600-black-white.png" type="image/x-icon">
+    <title>Haulfans Searcher | MZsheets</title>
+</head>
+<body>
+    <div id="top"></div>
+    <header>
+        <div id="main-navbar"></div>
+    </header>
+    <main class="page-content">
+        <section class="page-header">
+            <h1 class="page-title">ITEMS</h1>
+        </section>
+        <section class="store-content-header">
+            <div class="store-content-selection-container">
+                <p>Search by: </p>
+                <select name="search-mode" class="store-search-mode-option">
+                    <option value="name" selected>Product Name</option>
+                    <option value="seller">Product Seller</option>
+                    <option value="platform">Product Platform</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
+                <p>Sort by: </p>
+                <select name="sort-by" class="store-sort-by-option">
+                    <option value="default" selected>Default</option>
+                    <option value="a-z">Name: A to Z</option>
+                    <option value="price-low-to-high">Price: Low to High</option>
+                    <option value="price-high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
+                <p>Items per row: </p>
+                <select name="items-per-row" class="store-items-per-row-option">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="store-content-selection-container">
+                <p>Rows per page: </p>
+                <select name="rows-per-page" class="store-rows-per-page-option">
+                    <option value="4">4</option>
+                    <option value="8" selected>8</option>
+                    <option value="16">16</option>
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="128">128</option>
+                </select>
+            </div>
+        </section>
+        <section id="store-content"></section>
+        <section class="store-controls">
+            <div class="store-controls-info">
+                <p class="store-control-page-info">Page <input type="number" name="page" class="store-control-page-number-input"></input> of&nbsp<p class="store-control-page-count">???</p></p>
+            </div>
+            <div class="store-controls-page-buttons">
+                <button class="store-controls-page-buttons-dec">&lt</button>
+                <button class="store-controls-page-buttons-inc">&gt</button>
+            </div>
+            <a href="#top" class="store-controls-back-to-top">Back to top</a>
+        </section>
+    </main>
+    <footer>
+        <div id="main-footer"></div>
+    </footer>
+    <script>
+        // Display options
+        const numItemsPerRow = Math.max(1, Math.floor(document.documentElement.clientWidth / 350)); // Default number of items per row
+        const numRowsPerPage = 16; // Default number of rows per page
+
+        // Get query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        let query = urlParams.get('query');
+        const searchMode = urlParams.get('search-mode') ? urlParams.get('search-mode') : 'name';
+        const sortBy = urlParams.get('sort-by') ? urlParams.get('sort-by') : 'default';
+        const itemsPerRow = urlParams.get('items-per-row') ? parseInt(urlParams.get('items-per-row')) : numItemsPerRow;
+        const rowsPerPage = urlParams.get('rows') ? parseInt(urlParams.get('rows')) : numRowsPerPage;
+        const currentPage = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
+
+        // Set filter options
+        document.querySelector('.store-search-mode-option').value = searchMode;
+        document.querySelector('.store-sort-by-option').value = sortBy;
+        document.querySelector('.store-items-per-row-option').value = itemsPerRow;
+        document.querySelector('.store-rows-per-page-option').value = rowsPerPage;
+
+        // Load the navbar
+        fetch('../../data/components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-navbar').innerHTML = data;
+
+                // Set query if it exists
+                if (query) {
+                    document.getElementById('navbar-search-input').value = query;
+                    document.getElementById('navbar-m-search-input').value = query;
+                    if (query.length > 0) {
+                        // Set the input box in focus (desktop only)
+                        document.getElementById('navbar-search-input').focus();
+                    }
+                }
+                updateSearchQuery(query);
+
+                // Handle search input
+                document.getElementById('search-form').addEventListener('submit', handleSearchInput);
+                document.getElementById('search-form-m').addEventListener('submit', handleSearchInput);
+
+                // Handle search mode option
+                document.querySelector('.store-search-mode-option').addEventListener('change', (event) => {
+                    const searchModeOption = event.target.value; // Get the search mode option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('search-mode', searchModeOption);
+                    window.location.href = url;
+                });
+                
+                // Handle sort by option
+                document.querySelector('.store-sort-by-option').addEventListener('change', (event) => {
+                    const sortByOption = event.target.value; // Get the sort by option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('sort-by', sortByOption);
+                    window.location.href = url;
+                });
+
+                // Handle items per row option
+                document.querySelector('.store-items-per-row-option').addEventListener('change', (event) => {
+                    const itemsPerRowOption = event.target.value; // Get the items per row option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('items-per-row', itemsPerRowOption);
+                    window.location.href = url;
+                });
+
+                // Handle rows per page option
+                document.querySelector('.store-rows-per-page-option').addEventListener('change', (event) => {
+                    const rowsPerPageOption = event.target.value; // Get the rows per page option
+
+                    const url = new URL(window.location);
+                    url.searchParams.set('rows', rowsPerPageOption);
+                    window.location.href = url;
+                });
+            })
+            .catch(error => console.error('Error loading navbar:', error)
+        );
+
+        // Load the footer
+        fetch('../../data/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error)
+        );
+
+        // Store items
+        let allItems = [];
+
+        // Load default items
+        fetch('../../data/haulfans-products.json')
+            .then(response => response.json())
+            .then(items => {
+                allItems = items;
+                displayItems(allItems);
+            })
+            .catch(error => console.error('Error loading store items:', error));
+
+        // Listen for page change events
+        document.querySelector('.store-controls-page-buttons').addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const direction = event.target.textContent; // Get the direction of the page change
+                const newPage = direction === '<' ? currentPage - 1 : currentPage + 1; // Calculate the new page
+
+                // Update the URL with the new page
+                const url = new URL(window.location);
+                url.searchParams.set('page', newPage);
+                window.location.href = url;
+            }
+        });
+        document.querySelector('.store-control-page-number-input').addEventListener('change', (event) => {
+            const newPage = parseInt(event.target.value); // Get the new page
+
+            // Update the URL with the new page
+            const url = new URL(window.location);
+            url.searchParams.set('page', newPage);
+            window.location.href = url;
+        });
+
+        // Handle search query
+        function handleSearchInput(event) {
+            event.preventDefault();
+            const searchValue = event.target.querySelector('input').value.toLowerCase();
+            updateSearchQuery(searchValue);
+        }
+
+        // Update the current search query
+        function updateSearchQuery(nquery) {
+            // Update the URL with the new search query if it exists
+            const url = new URL(window.location);
+            query = nquery;
+            if (nquery !== null && nquery.length !== 0) {
+                url.searchParams.set('query', nquery);
+                window.history.pushState({}, '', url);
+                displayItems(allItems);
+                return;
+            }
+            if (url.searchParams.has('query')) {
+                url.searchParams.delete('query');
+                window.history.pushState({}, '', url);
+                displayItems(allItems);
+            }
+        }
+    
+        // Load the store content
+        function displayItems(items) {
+            items = filterByQuery(items, query);
+
+            const numItemsPerPage = itemsPerRow * rowsPerPage; // Number of items per page
+            const totalPages = Math.max(1, Math.ceil(items.length / numItemsPerPage)); // Calculate total pages
+
+            let page = currentPage;
+
+            // Ensure currentPage is within bounds
+            if (page < 1) {
+                page = 1;
+
+                // Update the URL to reflect the corrected page number
+                const url = new URL(window.location);
+                url.searchParams.set('page', page);
+                window.history.replaceState({}, '', url);
+            }
+            if (page > totalPages) {
+                page = totalPages;
+
+                // Update the URL to reflect the corrected page number
+                const url = new URL(window.location);
+                url.searchParams.set('page', page);
+                window.history.replaceState({}, '', url);
+            }
+
+            // Update page info
+            document.querySelector('.store-control-page-number-input').value = page;
+            document.querySelector('.store-control-page-count').textContent = totalPages;
+
+            // Disable/enable buttons based on page limits
+            const prevButton = document.querySelector('.store-controls-page-buttons-dec');
+            const nextButton = document.querySelector('.store-controls-page-buttons-inc');
+            prevButton.disabled = page === 1;
+            nextButton.disabled = page === totalPages;
+
+            // Sort items by the selected option
+            if (sortBy === 'a-z') {
+                items = items.sort((a, b) => a.itemNameEn.localeCompare(b.itemNameEn));
+            } else if (sortBy === 'price-low-to-high') {
+                items = items.sort((a, b) => a.pointPrice - b.pointPrice);
+            } else if (sortBy === 'price-high-to-low') {
+                items = items.sort((a, b) => b.pointPrice - a.pointPrice);
+            }
+
+            // Slice items by page
+            const startIndex = (page - 1) * numItemsPerPage;
+            const endIndex = startIndex + numItemsPerPage;
+            items = items.slice(startIndex, endIndex);
+
+            const storeContent = document.getElementById('store-content');
+            storeContent.innerHTML = ''; // Clear existing content
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'component-item-container';
+            container.style.gridTemplateColumns = `repeat(${itemsPerRow}, 1fr)`;
+            storeContent.appendChild(container);
+
+            // Fetch the itemcard component
+            fetch('../../data/components/itemcard-hf.html')
+                .then(response => response.text())
+                .then(template => {
+                    items.forEach(item => {
+                        // Create a new element for each item
+                        const itemCard = document.createElement('div');
+                        itemCard.innerHTML = template;
+
+                        // Populate the itemcard with data
+                        itemCard.querySelector('.item-card-content-container').addEventListener('click', () => {
+                            window.location.href = `https://haulfans.com/detail?id=${item.id}`; // Redirect to item page
+                        });
+                        itemCard.querySelector('.item-card-image').src = item.firstImage ?? '../../data/assets/mzsheets/logo-600-black-white.png'; // Fallback image
+                        itemCard.querySelector('.item-card-image').alt = item.itemNameEn;
+                        itemCard.querySelector('.item-card-title').textContent = item.itemNameEn;
+                        itemCard.querySelector('.item-card-price').innerHTML = `<strong>${item.pointPrice}</strong> Credits`;
+                        itemCard.querySelector('.item-card-seller').textContent = `\u{1F6C8} ${item.shopName}`;
+                        itemCard.querySelector('.item-card-platform').textContent = `\u{1F6C8} ${item.shopType}`;
+
+                        // Append the populated itemcard to the container
+                        container.appendChild(itemCard);
+                    });
+                })
+                .catch(error => console.error('Error loading itemcard component:', error));
+        }
+
+        // Function to filter items by search query
+        function filterByQuery(items, query) {
+            // Further filter items by the search query
+            if (query) {
+                // Searching uses a tokenized approach
+                query = query.toLowerCase().trim(); // Convert query to lowercase and remove leading/trailing whitespace
+                query = query.split(' '); // Tokenize query by spaces
+                if (searchMode === 'name') {
+                    // Filter items by name
+                    items = items.filter(item => {
+                        // Check if the item name contains all query tokens
+                        return query.every(token => item.itemNameEn.toLowerCase().includes(token));
+                    });
+                } else if (searchMode === 'seller') {
+                    // Filter items by seller
+                    items = items.filter(item => {
+                        // Check if the seller name contains all query tokens
+                        return query.every(token => item.shopName.toLowerCase().includes(token));
+                    });
+                } else if (searchMode === 'platform') {
+                    // Filter items by platform
+                    items = items.filter(item => {
+                        // Check if the platform name contains all query tokens
+                        return query.every(token => item.shopType.toLowerCase().includes(token));
+                    });
+                }
+            }
+            
+            return items;
+        }
+    </script>
+</body>
+</html>
