@@ -31,25 +31,15 @@
         <div id="main-navbar"></div>
     </header>
     <main class="page-content">
-        <div class="trending-container">
-            <section class="hottest-item">
-                <div class="hottest-item-container">
-                    <div class="hottest-item-info">
-                        <h2>HOTTEST ITEM</h2>
-                        <h3 class="hottest-item-name">Denim Tears Hoodies & Pants</h3>
-                        <a href="../item/?id=642" class="hottest-item-link">View Item</a>
-                    </div>
-                    <a href="" class="hottest-item-card">
-                        <img src="../../data/assets/trending/trending-image-1.webp" alt="Hottest Item">
-                    </a>
-                </div>
-            </section>
-            <section class="trending-items">
-                <div class="trending-items-list"></div>
-                <div class="items-footer">
-                    <a href="../" class="see-more-button">All Items</a>
-                </div>
-            </section>
+        <div id="seller-info">
+            <h1 class="seller-name">Seller Name</h1>
+            <p class="seller-desc">Seller Description</p>
+            <ul class="seller-products"></ul>
+        </div>
+        <div id="invalid-seller-message" style="display: none;">
+            <h2>Invalid Seller</h2>
+            <p>The seller you are looking for does not exist or has been removed.</p>
+            <a href="../" class="back-to-home">Back to Home</a>
         </div>
     </main>
     <footer>
@@ -57,7 +47,7 @@
     </footer>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const sellerName = urlParams.get('seller');
+        const sellerId = urlParams.get('seller-id');
         
         // Load the navbar
         fetch('../../data/components/navbar.html')
@@ -78,6 +68,36 @@
                 document.getElementById('main-footer').innerHTML = data;
             })
             .catch(error => console.error('Error loading footer:', error)
+        );
+
+        // Load seller data
+        fetch('../../data/seller-data.json')
+            .then(response => response.json())
+            .then(data => {
+                const sellerArray = data.sellers;
+                const sellerData = sellerArray.find(seller => seller.id === sellerId);
+                if (sellerData) {
+                    const sellerInfo = document.getElementById('seller-info');
+                    sellerInfo.querySelector('.seller-name').textContent = sellerData.name;
+                    sellerInfo.querySelector('.seller-desc').textContent = sellerData.description || 'No description available.';
+                    const sellerProducts = sellerData.products || [];
+                    const productsList = sellerInfo.querySelector('.seller-products');
+                    sellerProducts.forEach(product => {
+                        const productElement = document.createElement('div');
+                        const thumbnailImage = product.thumbnail || '../../data/assets/default-product-image.webp';
+                        console.log(thumbnailImage);
+                        productElement.className = 'product-item';
+                        productElement.innerHTML = `
+                            <img src="${thumbnailImage}" alt="${product.name}">
+                            <h3>${product.name}</h3>
+                        `;
+                        productsList.appendChild(productElement);
+                    });
+                } else {
+                    document.getElementById('invalid-seller-message').style.display = 'block';
+                }
+            })
+            .catch(error => console.error('Error loading seller data:', error)
         );
 
         // Function to handle search input

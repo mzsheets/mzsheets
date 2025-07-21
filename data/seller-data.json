@@ -1,0 +1,58 @@
+{
+    "sellers": [
+        {
+            "id": "1",
+            "name": "WWTOP",
+            "description": "WWTOP is a leading online marketplace offering a wide range of products from various categories.",
+            "products": [
+                {
+                    "name": "Air Max 1",
+                    "link": "https://k.youshop10.com/Xe5LbcAp",
+                    "price:": 50,
+                    "thumbnail": "https://photo.yupoo.com/wwfake100/84f3456b/medium.jpeg",
+                    "images:": [
+                        "https://example.com/image1.jpg",
+                        "https://example.com/image2.jpg"
+                    ]
+                },
+                {
+                    "name": "Another Product",
+                    "link": "https://example.com/another-product",
+                    "price:": 150,
+                    "thumbnail": "",
+                    "images:": [
+                        "https://example.com/image3.jpg",
+                        "https://example.com/image4.jpg"
+                    ]
+                },
+                {
+                    "name": "Product with No Thumbnail",
+                    "link": "https://example.com/product-no-thumbnail",
+                    "price:": 75,
+                    "thumbnail": "",
+                    "images:": [
+                        "https://example.com/image5.jpg"
+                    ]
+                },
+                {
+                    "name": "Product with Multiple Images",
+                    "link": "https://example.com/product-multiple-images",
+                    "price:": 120,
+                    "thumbnail": "https://example.com/thumbnail.jpg",
+                    "images:": [
+                        "https://example.com/image6.jpg",
+                        "https://example.com/image7.jpg",
+                        "https://example.com/image8.jpg"
+                    ]
+                },
+                {
+                    "name": "Product with Empty Images",
+                    "link": "https://example.com/product-empty-images",
+                    "price:": 90,
+                    "thumbnail": "https://example.com/thumbnail-empty.jpg",
+                    "images:": []
+                }
+            ]
+        }
+    ]
+}
